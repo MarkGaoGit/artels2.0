@@ -1,0 +1,25 @@
+{template header common}
+{template artels-menu-header common}
+<script>
+    window.onload = function(){
+        // 获取屏幕的高度 宽度 clientHeight clientWidth
+        var client_h = parseInt(document.documentElement.clientHeight) - 44;
+        $('.baseline').css({'min-height':client_h});
+    }
+</script>
+<section class="container bg-white m-article ">
+    <div class="baseline">
+        <div class="content contescnm w90 text-center margin-left-b5">
+            <p class="hd-h4 text-black margin-big">{$title}</p>
+            <p class="text-default text-center text-main margin-top">发表在 &nbsp;{$category} &nbsp;{date('Y-m-d H:i:s',$dataline)}</p>
+            <div class="text-left contents-cnn hd-h5 margin-big-bottom margin-top">
+                {$content}
+            </div>
+            <img class="margin-large-bottom" src="<?php echo __ROOT__ ?>template/default/statics/images/see-colour.jpg" alt="">
+            <span class="hd-h5" style="position: relative;top:-32px; left:5px;">{$hits} Views</span>
+        </div>
+    </div>
+</section>
+{template artels-menu-footer common}
+</body>
+</html>

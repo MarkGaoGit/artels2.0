@@ -1,0 +1,54 @@
+{template header common}
+{template artels-menu-header common}
+        <section class="container room-list">
+            <div class="baseline">
+                <div class="text-center padding">
+                    {if $_GET['cat_id'] == 3}
+                    <img src="<?php echo __ROOT__ ?>template/default/statics/images/artelsjx.png" alt="">
+                    {elseif $_GET['cat_id'] == 2}
+                    <img src="<?php echo __ROOT__ ?>template/default/statics/images/artels.png" alt="">
+                    {elseif $_GET['cat_id'] == 4}
+                    <img src="<?php echo __ROOT__ ?>template/default/statics/images/yizhu.png" alt="">
+                    {elseif $_GET['cat_id'] == 5}
+                    <img src="<?php echo __ROOT__ ?>template/default/statics/images/kezhan.png" alt="">
+                    {/if}
+                </div>
+                <!--轮播图-->
+                <div class="mui-slider">
+                    <div class="mui-slider-group ">
+                        {loop $msg $r}
+                        <div class="mui-slider-item text-center">
+                            <a href="#"><img src=
+                                    {if $_GET['sid'] == 6}
+                                        {SKIN_PATH}statics/images/{$r['rmtype']}-m-6.jpg
+                                    {else}
+                                        {SKIN_PATH}statics/images/kt.jpg
+                                    {/if}
+                                    /></a>
+                            <p class="text-main hd-h3 margin-tb">{$r['descript']}</p>
+                            <h2 class="hd-h2 text-f85738">&yen;<b>{$r['rate1']}</b></h2>
+                            <p class="hd-h3 text-main margin-tb">{$hotel['name']}</p>
+                            <p class="text-black text-left hotel-desc">{$hotel['hotel_descript']}</p>
+                            <a href="{url('goods/index/hotelListBooking',array('rc' => $r['rmtype'],'rm' => $r['descript'],'hid' => $_GET['sid'],'hotelname' => $hotel['name']))}" class="yd-btn margin-big-top">预订 BOOKING</a>
+                        </div>
+                        {/loop}
+                    </div>
+                </div>
+            </div>
+        </section>
+{template artels-menu-footer common}
+
+<script>
+
+////    轮播图
+    var gallery = mui('.mui-slider');
+    gallery.slider({
+        interval:1500//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+</script>
+
+
+
+
+</body>
+</html>

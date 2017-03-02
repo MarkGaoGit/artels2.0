@@ -1,0 +1,30 @@
+{template header common}
+{template artels-menu-header common}
+<script>
+    window.onload = function(){
+        // 获取屏幕的高度 宽度 clientHeight clientWidth
+        var client_h = parseInt(document.documentElement.clientHeight) - 44,
+                client_25 = parseInt(client_h) * 0.25;
+        $('.baseline').css({'min-height':client_h});
+        $('.mui-slider-group').css({'min-height':client_25});
+        $('.mui-slider-group .title-img').css({'height':client_25});
+    }
+</script>
+        <section class="container total-misc">
+            <div class="baseline bg-main">
+                {loop $news $r}
+                    <div class="mui-slider-group "style="margin-top:-4px;">
+                        <div class="article-list  ">
+                            <a href="{url('misc/index/article_detail',array('id'=>$r['id']))}">
+                                <img class="title-img" src="{$r['thumb']}">
+                                <p class="mui-slider-title text-white">{$r['title']}</p>
+                            </a>
+                        </div>
+                    </div>
+                {/loop}
+            </div>
+        </section>
+{template artels-menu-footer common}
+
+</body>
+</html>

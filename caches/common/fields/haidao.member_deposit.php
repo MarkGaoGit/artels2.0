@@ -1,0 +1,3 @@
+<?php
+//000000000000a:13:{i:0;s:2:"id";i:1;s:3:"mid";i:2;s:5:"money";i:3;s:8:"order_sn";i:4;s:10:"order_time";i:5;s:8:"pay_code";i:6;s:8:"trade_sn";i:7;s:12:"trade_status";i:8;s:10:"trade_time";i:9;s:12:"order_status";s:8:"_autoinc";b:1;s:3:"_pk";s:2:"id";s:5:"_type";a:10:{s:2:"id";s:21:"mediumint(8) unsigned";s:3:"mid";s:21:"mediumint(8) unsigned";s:5:"money";s:22:"decimal(10,2) unsigned";s:8:"order_sn";s:8:"char(32)";s:10:"order_time";s:16:"int(10) unsigned";s:8:"pay_code";s:11:"varchar(50)";s:8:"trade_sn";s:11:"varchar(50)";s:12:"trade_status";s:19:"tinyint(1) unsigned";s:10:"trade_time";s:16:"int(10) unsigned";s:12:"order_status";s:19:"tinyint(1) unsigned";}}
+?>

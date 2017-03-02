@@ -1,0 +1,22 @@
+{template header common}
+{template artels-menu-header common}
+        <section class="container works-one-works">
+            <div class="baseline">
+                <div class="text-center margin-big  hd-h3">
+                    <p class="text-black ">WORKS</p>
+                    <p class="text-black ">作品集</p>
+                </div>
+
+                <div class="content w90 text-left margin-left-b5 hd-h4">
+                    {loop $works $r}
+                            <a href="{url('goods/index/worksDetail',array('sid'=>$r['id']))}">
+                                <img class="title-img w100" src="{$r['thumb']}">
+                                <p class="text-white w100 works-name">{$r['name']}</p>
+                            </a><br>
+                    {/loop}
+                </div>
+            </div>
+        </section>
+{template artels-menu-footer common}
+</body>
+</html>

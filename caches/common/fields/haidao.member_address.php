@@ -1,0 +1,3 @@
+<?php
+//000000000000a:12:{i:0;s:2:"id";i:1;s:3:"mid";i:2;s:4:"name";i:3;s:6:"mobile";i:4;s:11:"district_id";i:5;s:7:"address";i:6;s:7:"zipcode";i:7;s:6:"status";i:8;s:9:"isdefault";s:8:"_autoinc";b:1;s:3:"_pk";s:2:"id";s:5:"_type";a:9:{s:2:"id";s:21:"mediumint(8) unsigned";s:3:"mid";s:21:"mediumint(8) unsigned";s:4:"name";s:11:"varchar(20)";s:6:"mobile";s:8:"char(11)";s:11:"district_id";s:16:"int(10) unsigned";s:7:"address";s:12:"varchar(255)";s:7:"zipcode";s:7:"char(6)";s:6:"status";s:19:"tinyint(1) unsigned";s:9:"isdefault";s:19:"tinyint(1) unsigned";}}
+?>

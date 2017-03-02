@@ -1,0 +1,26 @@
+# 将 RewriteEngine 模式打开
+RewriteEngine On
+# 商品列表页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^lists-([0-9]+).html$ index.php?m=goods&c=index&a=lists&id=$1&%1
+# 商品详情页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^goods-([0-9]+).html$ index.php?m=goods&c=index&a=detail&sku_id=$1&%1
+# 品牌列表页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^brand-([0-9]+).html$ index.php?m=goods&c=index&a=brand_list&id=$1&%1
+# 会员中心主页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^buyer.html$ index.php?m=member&c=index&a=index&%1
+# 帮助中心列表页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^help-lists-([0-9]+).html$ index.php?m=misc&c=index&a=help_lists&%1
+# 帮助中心内容页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^help-detail-([0-9]+).html$ index.php?m=misc&c=index&a=help_detail&id=$1&%1
+# 文章列表页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^article-lists-([0-9a-zA-Z]+).html$ index.php?m=misc&c=index&a=article_lists&category_id=$1&%1
+# 文章内容页
+RewriteCond %{QUERY_STRING} ^(.*)$
+RewriteRule ^article-detail-([0-9]+).html$ index.php?m=misc&c=index&a=article_detail&id=$1&%1

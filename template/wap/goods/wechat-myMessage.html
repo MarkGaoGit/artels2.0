@@ -1,0 +1,49 @@
+{template header common}
+{template artels-menu-header common}
+        <section class="container">
+            <div class="baseline">
+                <div class="text-center margin-big">
+                    <img src="{SKIN_PATH}statics/images/login-logo.png" alt="">
+                    <p class="hd-h3"></p>
+                </div>
+                <div class="content w80 text-left margin-left-b10 hd-h4">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>用户名</td>
+                            <td>{$user['username']}</td>
+                        </tr>
+                        <tr>
+                            <td>姓名</td>
+                            <td>{$user['nickname']}</td>
+                        </tr>
+                        <tr>
+                            <td>会员卡号</td>
+                            <td>{$user['cardNo']}</td>
+                        </tr>
+                        <tr>
+                            <td>会员类型</td>
+                            <td>{$user['ly_msg']['cardTypeDescript']}</td>
+                        </tr>
+                        <tr>
+                            <td>会员等级</td>
+                            <td>{$user['ly_msg']['cardLevelDescript']}</td>
+                        </tr>
+                        <tr>
+                            <td>电话号码</td>
+                            <td>{$user['mobile']}</td>
+                        </tr>
+                        <tr>
+                            <td>积分余额</td>
+                            <td>{$user['pointBalance']}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+<script>
+    $('table tr:odd').css({'background':'#fff'});
+    $('table tr td').css({'padding':'6px'});
+</script>
+{template artels-menu-footer common}
+</body>
+</html>

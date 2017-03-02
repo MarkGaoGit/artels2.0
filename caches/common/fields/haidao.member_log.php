@@ -1,0 +1,3 @@
+<?php
+//000000000000a:11:{i:0;s:2:"id";i:1;s:3:"mid";i:2;s:5:"value";i:3;s:3:"msg";i:4;s:8:"dateline";i:5;s:4:"type";i:6;s:8:"admin_id";i:7;s:12:"money_detail";s:8:"_autoinc";b:1;s:3:"_pk";s:2:"id";s:5:"_type";a:8:{s:2:"id";s:21:"mediumint(8) unsigned";s:3:"mid";s:21:"mediumint(8) unsigned";s:5:"value";s:13:"decimal(10,2)";s:3:"msg";s:4:"text";s:8:"dateline";s:16:"int(10) unsigned";s:4:"type";s:11:"varchar(20)";s:8:"admin_id";s:16:"int(10) unsigned";s:12:"money_detail";s:8:"tinytext";}}
+?>

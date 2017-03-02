@@ -1,0 +1,77 @@
+<?php if(!defined('IN_APP')) exit('Access Denied');?>
+<?php include template('header', 'common'); ?>
+<?php include template('artels-menu-header', 'common'); ?>
+
+<div class="mui-content text-b3">
+<div class="user-brief mui-clearfix">
+<p class="text-main hd-h2">个人中心 PERSONAL CENTER</p>
+</div>
+<div class="mui-row member-quick-nav bg-white ">
+<a href="<?php echo url('member/favorite/index',array('closing'=>'week'));?>" class="mui-col-xs-6 item-collect text-gray"><span class="text-gray"><?php echo count($favorite['lists']);?></span>收藏的商品</a>
+<a href="<?php echo url('member/money/log');?>" class="mui-col-xs-6 item-balance text-gray"><span class="mui-block text-ellipsis text-gray">￥<?php echo $this->member['money']?></span>我的余额</a>
+</div>
+<ul class="mui-table-view layout-list-common">
+<li class="mui-table-view-cell">
+<a href="<?php echo url('member/order/index');?>" class="mui-navigate-right">
+<span class="mui-icon mui-icon-contact text-d3"></span>
+<span class="hd-h4">我的订单</span>
+<p class="mui-pull-right">查看全部订单</p>
+</a>
+</li>
+</ul>
+<div class="mui-row wait-work bg-white ">
+<a href="<?php echo url('member/order/index',array('type'=>1));?>" class="mui-col-xs-4 icon-40">
+<img src="<?php echo SKIN_PATH;?>statics/images/ico_7.png" />
+<span>待付款</span>
+<?php if(($this->counts[pay] > 0)) { ?>
+<em class="tag"><?php echo $this->counts['pay']; ?></em>
+<?php } ?>
+</a>
+<a href="<?php echo url('member/order/index',array('type'=>3));?>" class="mui-col-xs-4 icon-40">
+<img src="<?php echo SKIN_PATH;?>statics/images/ico_8.png" />
+<span>待发货</span>
+<?php if(($this->counts[delivery] > 0)) { ?>
+<em class="tag"><?php echo $this->counts['delivery']; ?></em>
+<?php } ?>
+</a>
+<a href="<?php echo url('member/order/index',array('type'=>4));?>" class="mui-col-xs-4 icon-40">
+<img src="<?php echo SKIN_PATH;?>statics/images/ico_9.png" />
+<span>待收货</span>
+<?php if(($this->counts[receipt] > 0)) { ?>
+<em class="tag"><?php echo $this->counts['receipt']; ?></em>
+<?php } ?>
+</a>
+</div>
+<ul class="mui-table-view layout-list-common">
+<li class="mui-table-view-cell">
+<a href="<?php echo url('member/index/ajax_order',array('type'=>'mobilemenu'));?>" class="mui-navigate-right">
+<!--<span class="icon-20"><img src="<?php echo SKIN_PATH;?>statics/images/ico_4.png" /></span>-->
+<span class="mui-icon mui-icon-personadd text-666"></span>
+<span class="hd-h4">预订列表</span>
+<p class="mui-pull-right">预订订单</p>
+</a>
+</li>
+<li class="mui-table-view-cell">
+<a href="<?php echo url('member/account/safe');?>" class="mui-navigate-right">
+<!--<span class="icon-20"><img src="<?php echo SKIN_PATH;?>statics/images/ico_4.png" /></span>-->
+<span class="mui-icon mui-icon-person text-666"></span>
+<span class="hd-h4">个人资料</span>
+<p class="mui-pull-right">修改信息</p>
+</a>
+</li>
+<li class="mui-table-view-cell">
+<a href="<?php echo url('member/account/resetpassword');?>" class="mui-navigate-right">
+<!--<span class="icon-20"><img src="<?php echo SKIN_PATH;?>statics/images/ico_5.png" /></span>-->
+<span class="mui-icon mui-icon-locked text-666"></span>
+<span class="hd-h4">账号安全</span>
+<p class="mui-pull-right">修改密码</p>
+</a>
+</li>
+</ul>
+<div class="margin padding-small">
+<a href="<?php echo url('member/public/logout',array('dev'=>'sj'));?>" class="mui-btn mui-btn-blue yd-btn full mui-h4">退出当前账号</a>
+</div>
+</div>
+<?php include template('artels-menu-footer', 'common'); ?>
+</body>
+</html>

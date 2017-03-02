@@ -1,0 +1,234 @@
+<?php include template('toper','common');?>
+<?php include template('header','common');?>
+<?php include template('login','common');?>
+<?php include template('logintoper','common');?>
+
+<script>
+	$('title').html('订单提交');
+</script>
+<script type="text/javascript">
+	var setting = {};
+	setting = {json_encode($setting)};
+	var skuids = '<?php echo $_GET["skuids"] ?>';
+	var delivery_url = '?m=order&c=order&a=get_deliverys&skuids='+ skuids;
+</script>
+<!-- 头部 -->
+<div class="header container">
+
+</div>
+<div class="layout border-top cart-btn-wrap">
+	<!--坐标位置-->
+	<div class="container clearfix">
+	</div>
+	<!--订单结算内容-->
+	<div class="container order-settlement clearfix margin-top">
+		<dl class="settlement-lists layout border-bottom border-black">
+			<dt id="notice">选择收货地址：</dt>
+			<dd>
+				<div class="choose-address-lists clearfix" data-model="districts">
+
+					<?php $i = 0; ?>
+					{loop $address $addr}
+					<div class="address-list adddiv {if ($addr['isdefault']==1)}choose{/if}" data-district="{$addr['district_id']}" data-addresid="{$addr['id']}">
+						<div class="name border-bottom border-black">
+							<span class="city text-ellipsis" title="{$addr[_area]}">{$addr[_area]}</span>
+							<span class="name-text margin-small-left text-ellipsis" title="{$addr['name']} 收">（{$addr['name']} 收）</span>
+							<a class="fr text-sub {if ($addr['isdefault']!=1)}hidden{/if} update" data-iframe="true" href="{url('member/address/edit',array('id'=>$addr['id']))}">修改</a>
+						</div>
+						<div class="detail">
+							<p>{$addr['address']}</p>
+						</div>
+					</div>
+					<?php $i++ ; ?>
+					{/loop}
+					<a class="address-list new-address" data-iframe="true" href="{url('member/address/add')}"><i></i>添加新地址</a>
+				</div>
+			</dd>
+		</dl>
+		<dl class="settlement-lists layout border-bottom border-black padding-big-bottom" data-model="pays">
+			<dt>选择支付方式：</dt>
+			<dd class="item-checked">
+				{loop $pay_type $k $v}
+				<div class="item" data-id="{$k}">
+					<a href="javascript:;">{$v}</a>
+				</div>
+				{/loop}
+			</dd>
+		</dl>
+		<dl class="settlement-lists layout">
+			<dt>配送清单：<a class="fr text-main text-gray-666 aho " href="{url('order/cart/index')}">返回购物车修改</a></dt>
+		</dl>
+		<div class="fl layout padding-big-left padding-big-right border-bottom border-black clearfix">
+			{loop $carts['skus'] $sellerid $cart}
+			<div class="bill-wrap" data-sellerid="{$sellerid}">
+				<div class="goods-bill ">
+					<dl class="settlement-lists logistics layout border-bottom border-gray-white">
+						<dt>选择配送方式：</dt>
+						<dd class="item-checked" data-event="balance" data-model="delivery">
+							{if (empty($carts['deliverys'][$sellerid]))}
+							<p class="margin-bottom text-mix">您所选择的收货地址暂时无法配送</p>
+							{else}
+							<?php $i = 0; ?>
+							{loop $carts['deliverys'][$sellerid] $delivery}
+							<div class="item {if ($i == 0)}selected{/if}" delivery-district-id="{$delivery[delivery_id]}">
+								<a href="javascript:;">{$delivery[_delivery][name]}</a>
+							</div>
+							<?php $i++; ?>
+							{/loop}
+							{/if}
+						</dd>
+					</dl>
+
+					<div class="fl bill-ohter">
+						<input class="fl input border-gray-white" type="text" data-model="remarks" placeholder="请填写给商家的留言" />
+					</div>
+				</div>
+				<div class="settlement-cart-wrap cart-wrap text-default clearfix">
+
+					{loop $cart[sku_list] $v}
+					<div class="tr sku" data-skuid="{$v[_sku_][sku_id]}">
+						<div class="cart-pic margin-large-left"><img src="{$v[_sku_][thumb]}" /></div>
+						<div class="cart-info">
+							<p class="text-ellipsis">{if $v['_sku_']['brand']['name']}{$v['_sku_']['brand']['name']}——{/if}{$v['_sku_']['name']}</p>
+							<p class="text-ellipsis">尺寸：
+								<!--不知道为什么$v['_sku_']['spec'][0]['value']-->
+								<!--直接这样拿值 就不显示了 扯淡。。-->
+								<?php
+																$arrs = $v['_sku_']['spec'][0];
+																if($arrs){
+																	$sparr = explode('/', $arrs['value']); echo $sparr[0];
+																}
+														?>
+							</p>
+						</div>
+						<div class="cart-price text-center">
+							<span>￥{$v[_sku_][prom_price]}</span>
+
+						</div>
+						<div class="cart-nums text-center">
+							<span>x &nbsp;&nbsp;&nbsp;{$v['number']}</span>
+						</div>
+						<div class="cart-total text-center" data-model="sku_shop_price">
+							<br>
+							<span class="text-mix">{$v[prices]}</span>
+							{if $v[_promos]}
+							<p class="text-small text-gray hidden">优惠：<em>0.00</em></p>
+							{/if}
+						</div>
+						<div class="fl margin-top layout text-small text-lh-small" data-model="give"></div>
+					</div>
+					{/loop}
+				</div>
+			</div>
+			{/loop}
+		</div>
+		{if ($setting['invoice_enabled'] == 1)}
+		{/if}
+		<div class="settlement-lists layout settlement-total text-right text-gray-666 border-bottom border-gray-white padding-bottom">
+			<p>共 <span class="text-mix" data-model="counts">{$carts[sku_numbers]}</span> 件商品　商品总额：<span class="text-right" data-model="sku_total">{$carts[sku_total]}</span></p>
+			<p>总运费：<span class="text-right" data-model="deliverys_total">{$carts[deliverys_total]}</span></p>
+			<p>发票税额：<span class="text-right" data-model="invoice_tax">{$carts[invoice_tax]}</span></p>
+			<p>活动优惠：<span class="text-right text-mix" data-model="promot_total">{$carts[promot_total]}</span></p>
+			<!-- <p>优惠券优惠：<span class="text-right text-mix">-0.00</span></p> -->
+		</div>
+		<div class="settlement-lists layout clearfix">
+			<div class="fr padding-big-top padding-big-bottom text-right cart-settle">
+				<p class="fl h3">应付订单总额：<span class='text-mix'>￥</span><span class="text-mix" data-model="real_amount">{$carts[real_amount]}</span></p>
+				<a class="cart-btn fr text-default cheng-button" id="submit"><b>提交订单</b></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--底部-->
+<?php include template('artels-footer','common');?>
+<script>
+	$(function(){
+		/*去除首页LOGO透明度 以及首页的70像素偏差*/
+		$('.logo').css({'opacity' : '1'});
+		$('.footer-70').css({'top' : '0'});
+		$('.artels-record').css({'top' : '0'});
+		hd_order._get();
+
+		$('[data-iframe]').live('click',function(){
+			top.dialog({
+				url : $(this).attr('href'),
+				data: $(this).parents(".tr").data('id'),
+				title: 'loading',
+				width: 690,
+				onclose: function () {
+					if(this.returnValue&&this.returnValue=='ok'){
+						window.location.reload();
+					}
+				}
+			})
+					.showModal();
+			return false;
+		})
+		//发票切换
+		$(".receipt-choose .item").click(function(){
+			if($(this).index()==0){
+				$(".receipt-content").addClass("hidden");
+			}else{
+				$(".receipt-content").removeClass("hidden");
+			}
+		});
+		//优惠券选择
+		$(".coupon .choose-coupon").click(function(){
+			if($(this).parents(".coupon").hasClass("choose")){
+				$(this).parents(".coupon").removeClass("choose");
+			}else{
+				$(this).parents(".coupon").addClass("choose");
+			}
+		});
+		$(".coupon-content .item").click(function(){
+			$(".coupon-content-box").eq($(this).index()).removeClass("hidden");
+			$(".coupon-content-box").not($(".coupon-content-box").eq($(this).index())).addClass("hidden");
+		});
+
+		// 多的收货地址隐藏
+		if ($("[data-model=districts] .adddiv").length > 7) {
+			$("#notice").html('选择收货地址：<span class="show-add">显示全部地址</span>');
+			$("[data-model=districts] .adddiv:gt(6)").addClass('hidden');
+		}
+
+		/* 点击收货地址 */
+		$("[data-model=districts] div.address-list").live("click",function(){
+			// 隐藏/显示修改
+			$(this).addClass("choose").siblings().removeClass("choose");
+			$("[data-model=districts] .name a").addClass('hidden');
+			$("[data-model=districts]").find(".choose .name a").removeClass('hidden');
+			hd_order._get_deliverys($(this).data('district'));
+		});
+
+		/* 得到订单数据 */
+		$("[data-event='balance']").live("click", function(){
+			hd_order._get();
+		});
+
+		$("[data-model='order_proms']").live("change", function(){
+			hd_order._get();
+		});
+
+		/* 商品促销 */
+		$("[data-model=sku_proms]").find('.cart-btn').click(function() {
+			var $_this = $(this).parents("[data-model=sku_proms]"),
+					$_input = $_this.find("input[type=radio]:checked");
+			$_this.addClass("hidden");
+			if($_input.data('type') == 'amount_discount' || $_input.data('type') == 'number_discount') {
+				$_this.parents('.cart-price').siblings("[data-model='sku_shop_price']").find("p > em").html('-' + $_input.data('discount'));
+				$_this.parents('.cart-price').siblings("[data-model='sku_shop_price']").find("p").removeClass('hidden');
+			} else {
+				$_this.parents('.cart-price').siblings("[data-model='sku_shop_price']").find("p").addClass('hidden');
+			}
+		});
+
+		/* 点击发票 */
+		$("#invoice .receipt-choose .item").live("click",function() {
+			hd_order._invoice($(this));
+		})
+
+	})
+</script>
+<script type="text/javascript" src="template/default/statics/js/order.js?v={HD_VERSION}"></script>
+<script type="text/javascript">hd_order.init();// 初始化订单</script>

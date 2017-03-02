@@ -1,0 +1,55 @@
+{template header common}
+{template artels-menu-header common}
+<section class="container">
+	<div class="baseline m-order-list">
+		<div class="content w100 text-left hd-h4">
+
+			<div class="order-msg w100 padding bg-white margin-top-15 border-bottom border-top">
+				<p class="hd-h4 text-black">酒店：<span class="text-666 margin-right">{$order['hotelDescript']} --- {$order['rmtypeDescript']}</span></p>
+				<p class="hd-h4 text-black margin-top margin-bottom">入住：<span class="text-666">{$order['arr']} 至 {$order['dep']}</span></p>
+				<p class="hd-h4 text-black margin-bottom">状态：<span class="text-666">{$order['staDescript']}</span></p>
+				<p class="hd-h4 text-black margin-bottom">预订人：<span class="text-666">{$order['rsvMan']}</span></p>
+				<p class="hd-h4 text-black margin-bottom">预订人电话：<span class="text-666">{$order['mobile']}</span></p>
+				<p class="hd-h4 text-black margin-bottom">预订房间数：<span class="text-666">{$order['rmNum']}</span></p>
+				<p class="hd-h4 text-black margin-bottom">备注：<span class="text-666">{$order['remark']}</span></p>
+				<p style="height:1px; border-top:1px solid #ccc; margin:3px 0;"></p>
+				<p class="hd-h4 text-black margin-top">订单号：<span class="text-666">{$order['crsNo']}</span>
+					{if $order['sta'] == 'R'}
+						<span class="text-gray-666 cencel-order btns order-cel fr" date-crsno="{$order['crsNo']}">取消订单</span>
+					{/if}
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
+{template artels-menu-footer common}
+
+<script>
+	$('.order-cel').on('click',function(){
+		if(confirm('您确定要取消此订单吗？')){
+			var url = "<?php echo url('member/index/ajax_cencel_order') ?>",
+					crs = $(this).attr('date-crsno');
+			$.post(url,{crs:crs},function(data){
+				var type = typeof(data);
+				if(type == 'string'){
+					$.tips({
+						icon:'error',
+						content:'订单取消失败,失败原因：\n' + data,
+						callback:function() {}
+					});
+				}else{
+					$.tips({
+						icon: 'success',
+						content: '订单取消成功',
+						callback:function() {
+							window.location.reload();
+						}
+					});
+				}
+			},'json');
+		}
+	});
+</script>
+
+</body>
+</html>

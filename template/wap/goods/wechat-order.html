@@ -1,0 +1,33 @@
+{template header common}
+{template artels-menu-header common}
+<script type="text/javascript" src="{SKIN_PATH}statics/js/wechat-order.js?v={HD_VERSION}"></script>
+
+        <section class="container text-left hotel-booking">
+            <div class="baseline hd-h4">
+
+                <div class="text-center margin-big">
+                    <img src="{SKIN_PATH}statics/images/login-logo.png" alt="">
+                    <p class="hd-h3"></p>
+                </div>
+                    <button id='arr'  data-options='{"type":"date","beginYear":2016,"endYear":2115}' class="btn padding-left-15 margin-bottom-15 mui-btn mui-btn-block hd-h4 input-box text-left">开始时间</button>
+
+                    <input type="hidden"  name="arr" class="arr" value="">
+                    <input type="hidden"  name="dep" class="dep" value="">
+                    <input type="hidden"  name="cardNo" class="cardNo" value="{$user['cardNo']}">
+
+                    <button id='dep'  data-options='{"type":"date"}' class="btn padding-left-15 margin-bottom-15 mui-btn mui-btn-block hd-h4 input-box text-left">结束时间</button>
+                    <input type="hidden" name="hotelId" value="" class="hotelid">
+                    <input type="submit" class="yd-btn input-box booking-btn hd-h4" value="查询 Search">
+                <table class="w100 orders hd-h6 margin-large-top">
+                    <tr class="tr-one">
+                        <td>订单号</td>
+                        <td>到店日期</td>
+                        <td>离店日期</td>
+                        <td>酒店名称</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+{template artels-menu-footer common}
+</body>
+</html>

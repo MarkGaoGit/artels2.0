@@ -1,0 +1,52 @@
+{template header common}
+{template artels-menu-header common}
+<script type="text/javascript" src="{SKIN_PATH}statics/js/pinpai.js?v={HD_VERSION}"></script>
+
+        <section class="container pinpai">
+            <div class="baseline">
+                <div class="mui-card">
+                    <ul class="mui-table-view m-hotel-list">
+                        {loop $catHotelList $r}
+                            <li class="mui-table-view-cell mui-collapse list-top">
+                                <a class="mui-navigate-right text-center  menu-s" href="#">
+                                    <p class="hd-h3 text-white  hotel-names" >
+                                        <span class="hd-h4">{$r['cat']['name']}</span>
+                                    </p>
+                                </a>
+                                <ul class="mui-table-view">
+                                    {loop $r['hotel'] $d}
+                                        <li class="mui-table-view-cell mui-media">
+                                            <a href="javascript:;" class="m-c">
+                                                <img class="mui-media-object mui-pull-left" src="{$d['thumb']}">
+                                                <div class="mui-media-body text-white hd-h4 hotel-name" >
+                                                    {$d['name']}
+                                                </div>
+                                                {if $d['is_open'] == 1}
+                                                    <a href="{url('goods/index/hotelDetail',array('cat_id'=>$r['cat']['id'],'sid' => $d['id']))}" class="yd-btn pinpai-yd-btn fr ">预订</a>
+                                                {else}
+                                                    <a href="javascript:;" class="not-btn pinpai-yd-btn fr ">敬请期待</a>
+                                                {/if}
+                                                <span class="clear"></span>
+                                            </a>
+                                        </li>
+                                    {/loop}
+                                </ul>
+                            </li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+        </section>
+{template artels-menu-footer common}
+
+<script>
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

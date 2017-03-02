@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/system/base.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/uc_client/client.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uc_client/control/crm.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uc_client/model/artels.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uc_client/model/integral.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/uc_client/model/lvyun.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../test.php" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
