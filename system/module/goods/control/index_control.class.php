@@ -363,7 +363,7 @@ class index_control extends init_control
 
         $this->load->librarys('View')->assign('post' , $post);
         $this->load->librarys('View')->assign('msg' , $msg);
-        $this->load->librarys('View')->assign('hotelNum' , $result['totalRow[ s']);
+        $this->load->librarys('View')->assign('hotelNum' , $result['totalRows']);
         $result = $this->service->create_sqlmap($_GET);
         $this->load->librarys('View')->assign('city' , $city);
         $this->load->librarys('View')->assign('hotelList',$hotelList);
@@ -556,7 +556,7 @@ class index_control extends init_control
 //            $rmtype[0]['code'] = $tm[1]['code'];
 //            $rmtype[0]['descript'] = $tm[1]['descript'];
 //            $rmtype[1]['code'] = $tm[0]['code'];
-//            $rmtype[1]['descript'] = $tm[0]['desc ript'];
+//            $rmtype[1]['descript'] = $tm[0]['descript'];
 //        }
         $data = $this->api->resultApi($roomList,$rmtype);   //处理房型
         $msg = $this->api->breakfast($data);                //处理早餐
@@ -1211,6 +1211,13 @@ class index_control extends init_control
     }
 
     public function sorts(){
+
+        $artistJson = $this->memcache->get('artist');
+        $artist = json_decode( $artistJson, true );
+
+        $workNavJson = $this->memcache->get( 'workNav' );
+        $nav = json_decode( $workNavJson ,true );
+
         if($_GET['types'] == 'yshu'){
             $derivative = $_SESSION['yshuPic'];
             $shoucang = $_SESSION['yshuFarr'];
@@ -1252,16 +1259,22 @@ class index_control extends init_control
             $this->load->librarys('View')->assign('pic',$derivative);
             $this->load->librarys('View')->assign('userInfo',$this->member);
             $this->load->librarys('View')->assign('get', $_GET);
+            $this->load->librarys('View')->assign('artist',$artist);
+            $this->load->librarys('View')->assign('nav',$nav);
             $this->load->librarys('View')->display('works');
         }elseif($_GET['types'] == 'myshu'){
             $this->load->librarys('View')->assign('works',$derivative);
             $this->load->librarys('View')->assign('nav',$_SESSION['yshuNav']);
             $this->load->librarys('View')->assign('get',$_GET);
+            $this->load->librarys('View')->assign('artist',$artist);
+            $this->load->librarys('View')->assign('nav',$nav);
             $this->load->librarys('View')->display('art-works-show');
         }else {
             $this->load->librarys('View')->assign('derivative', $derivative);
             $this->load->librarys('View')->assign('nav', $_SESSION['nav']);
             $this->load->librarys('View')->assign('get', $_GET);
+            $this->load->librarys('View')->assign('artist',$artist);
+            $this->load->librarys('View')->assign('nav',$nav);
             $this->load->librarys('View')->display(derivative);
         }
     }

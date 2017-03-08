@@ -48,14 +48,14 @@
 <div class="art-lists art-list art-works hidden ">
     <ul class="art-ysp-list">
         {loop $works $r}
-        <a href="{url('goods/index/worksDetail',array('sid'=>$r['id']))}">
-            <li class="art-ysp ">
-                <img class="lazy" data-original="{$r['thumb']}" alt="">
-                <p class="text-big text-black">{$r['name']}</p>
-                <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][0]}</p>
-                <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][1]}</p>
-            </li>
-        </a>
+            <a href="{url('goods/index/worksDetail',array('sid'=>$r['id']))}">
+                <li class="art-ysp ">
+                    <img class="lazy" data-original="{$r['thumb']}" alt="">
+                    <p class="text-big text-black">{$r['name']}</p>
+                    <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][0]}</p>
+                    <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][1]}</p>
+                </li>
+            </a>
         {/loop}
     </ul>
 </div>
@@ -65,14 +65,14 @@
 <div class="art-list art-work ">
     <ul class="art-ysp-list">
         {loop $works $k $r}
-        <a href="{url('goods/index/worksDetail',array('sid'=>$r['id']))}">
-            <li class="art-ysp {if $k > 7} hidden {/if}">
-                <img  class="lazy" data-original="{$r['thumb']}" alt="">
-                <p class="text-big text-black">{$r['name']}</p>
-                <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][0]}</p>
-                <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][1]}</p>
-            </li>
-        </a>
+            <a href="{url('goods/index/worksDetail',array('sid'=>$r['id']))}">
+                <li class="art-ysp {if $k > 7} hidden {/if}">
+                    <img  class="lazy" data-original="{$r['thumb']}" alt="">
+                    <p class="text-big text-black">{$r['name']}</p>
+                    <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][0]}</p>
+                    <p class="text-small text-gray-666  padding-small-top">{$r['specs_specs'][1]}</p>
+                </li>
+            </a>
         {/loop}
     </ul>
 </div>

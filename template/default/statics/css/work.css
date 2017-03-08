@@ -1,0 +1,131 @@
+﻿
+.carefully_feed ul li {
+    display: inline-block;
+    width: 294px;
+    height:294px;
+    margin-right:6px;
+}
+.carefully_feed .artist_box {
+    width: 100%;
+    overflow: hidden;
+    height: 290px;
+}
+
+.carefully_feed .artist_box .img {
+    width: 100%;
+    overflow: hidden;
+    height: 290px;
+    transition: all 0.2s ease-in-out 0s;
+    display: table;
+    position: relative
+}
+
+.carefully_feed .artist_box .img a img {
+    width: 100%
+}
+.item-info-back a { color:#fff; text-decoration: none;}
+.item-info-back h3 {
+    color: #fff;
+    font-size: 14px;
+    padding-bottom: 15px;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.item-info-back p {
+    border-top: 1px solid #ccc;
+    font-size: 14px;
+    color: #fff;
+    padding-top: 10px;
+    width: 40%;
+    margin: 0 auto;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.ch-info-back-warp {
+    display: table;
+    height: 225px;
+    table-layout: fixed;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 230
+}
+
+.ch-info-back {
+    width: 100%;
+    height: 100%;
+    background: #2C2B2A;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle
+}
+
+.carefully_feed .artist_box .item-info-back .btn:hover {
+    color: #f85738;
+}
+
+.item {
+    position: relative;
+    cursor: default;
+    -webkit-perspective: 900px;
+    -moz-perspective: 900px;
+    -o-perspective: 900px;
+    -ms-perspective: 900px;
+    perspective: 900px
+}
+.item-infos { height:290px; width:290px;}
+
+.item-infos>div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    -o-transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    transform-origin: 50% 0%
+}
+
+.item-infos .item-info-back {
+    -webkit-transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+    -moz-transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+    -o-transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+    -ms-transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+    transform: translate3d(0, 0, -220px) rotate3d(1, 0, 0, 90deg);
+    background: #000;
+    opacity: 0
+}
+
+.item:hover .item-info-front {
+    -webkit-transform: translate3d(0, 280px, 0) rotate3d(1, 0, 0, -90deg);
+    -moz-transform: translate3d(0, 280px, 0) rotate3d(1, 0, 0, -90deg);
+    -o-transform: translate3d(0, 280px, 0) rotate3d(1, 0, 0, -90deg);
+    -ms-transform: translate3d(0, 280px, 0) rotate3d(1, 0, 0, -90deg);
+    transform: translate3d(0, 280px, 0) rotate3d(1, 0, 0, -90deg);
+    opacity: 0
+}
+
+.item:hover .item-info-back {
+    -webkit-transform: rotate3d(1, 0, 0, 0deg);
+    -moz-transform: rotate3d(1, 0, 0, 0deg);
+    -o-transform: rotate3d(1, 0, 0, 0deg);
+    -ms-transform: rotate3d(1, 0, 0, 0deg);
+    transform: rotate3d(1, 0, 0, 0deg);
+    opacity: 1
+}
+

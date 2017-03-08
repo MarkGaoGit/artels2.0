@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - haidao@localhost" uuid="09293f3f-02da-4d38-be2e-d6ced800be02" />
-    <data-source name="MySQL - haidao@10.10.50.45" uuid="60cdadd6-1a03-40bc-8664-6dee9c106091" />
+    <data-source name="MySQL - haidao@localhost" uuid="09293f3f-02da-4d38-be2e-d6ced800be02">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="MySQL - haidao@10.10.50.45" uuid="60cdadd6-1a03-40bc-8664-6dee9c106091">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
   </component>
 </project>

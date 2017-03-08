@@ -1528,6 +1528,7 @@ img { display: block; }
 
 .goods-msg img { display:inline-block;}
 .goods-msg p ,  .goods-msg span{ line-height: 25px;}
+
 /*li内容样式*/
 .art-content p  { z-index:20; position: relative;}
 .art-content img { z-index:19; position: relative; }
@@ -1553,12 +1554,12 @@ img { display: block; }
 .artist .btn-right { left:1168px; top:-218px;}
 .artist-list .message{ display:none; width:220px; height:85px; padding:10px 5px 0 5px; background:#00b4bc; z-index:100; position: relative; top:-80px;}
 
-.pic-list { width:294px; height:294px;float:left; margin:0 6px 20px 0; overflow: hidden; cursor: pointer;}
+.pic-list { width:294px; height:294px;float:left; margin:0 6px 6px 0; overflow: hidden; cursor: pointer;}
 
 .pic-list img { width:290px; height:290px;}
 .works-marsk { width:290px; height:290px; background:#000; opacity:0.6; position:relative; top:-290px; z-index:150; display:none;}
 
-.pic-list .pic-message { width:294px; height:294px; position:relative; top:-588px; z-index:200; text-align: center; line-height: 294px;}
+.pic-list .pic-message { width:294px; height:294px; position:relative; /*top:-588px;*/ z-index:200; text-align: center; line-height: 294px;}
 .pic-list .pic-message .collection{ cursor:pointer; display:block; height:20px; width:23px; background:url(../images/love.png) no-repeat; margin:18px 0 0 260px;}
 .pic-list .pic-message .yescoll{ cursor:pointer; display:block; height:20px; width:23px; background:url(../images/love-colcur.png) no-repeat; margin:18px 0 0 260px;}
 .pic-list .pic-message .collection:hover{ background:url(../images/love-colcur.png) no-repeat;}

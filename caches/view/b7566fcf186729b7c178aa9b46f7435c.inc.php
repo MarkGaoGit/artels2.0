@@ -1,5 +1,5 @@
 <?php if(!defined('IN_APP')) exit('Access Denied');?>
-<?php include template('toper','common');?>
+﻿<?php include template('toper','common');?>
 <?php include template('header','common');?>
 <?php include template('login','common');?>
 <?php include template('logintoper','common');?>
@@ -7,6 +7,8 @@
 <script>
     $('title').html('艺术家与作品');
 </script>
+<link rel="stylesheet" href="<?php echo __ROOT__ ?>template/default/statics/css/work.css">
+<script src="<?php echo __ROOT__ ?>template/default/statics/js/work.pa.js"></script>
 <!--面包屑-->
 <div class="container crumbs clearfix topb"></div>
 
@@ -88,31 +90,42 @@
 
 
 
+
+
 <div class="picture">
     <?php if(empty($pic) ) { ?>
-        您搜索的条件下暂无商品
+    您搜索的条件下暂无商品
     <?php } else { ?>
-        <ul class="ajax-pic-list" style="position:relative;left:4px;">
+
+    <div class="carefully_feed max_width_1250">
+        <ul class="carefully_feed works ajax-pic-list">
             <?php if(is_array($pic)) foreach($pic as $r) { ?>                <li class="pic-list" date-id="<?php echo $r['id'];?>">
-                    <img width="290" height="290" class="lazy" data-original="<?php echo $r['thumb'];?>" alt="">
-                    <div class="works-marsk"></div>
-                    <div class="pic-message text-white text-small" onclick="jump_to_workdetail(<?php echo $r['id'];?>)"  >
-                        <?php if(in_array($r['id'],$shoucang)) { ?>
-                        <i class="yescoll"></i>
-                        <?php } else { ?>
-                        <i class="collection" onclick="colle(<?php echo $r['id'];?>)"></i>
-                        <?php } ?>
-                        <div onclick="jump_to_workdetail(<?php echo $r['id'];?>)" class="msk-msg" style="width:100px; height:84px;">
-                            <p class="pic-name"><?php echo $r['name'];?></p>
-                            <i class="lines"></i>
-                            <p><a class="text-white" href="<?php echo url('goods/index/worksDetail',array('sid'=>$r['id']));?>">查看作品</a></p>
+                    <div class="artist_box item">
+                        <div class="item-infos">
+                            <div class="ch-info-back-warp item-info-back">
+                                <div class="ch-info-back msk-msg" onclick="jump_to_workdetail(<?php echo $r['id'];?>)" >
+                                    <h3><?php echo $r['name'];?></h3>
+                                    <p></p>
+                                    <a href="<?php echo url('goods/index/worksDetail',array('sid'=>$r['id']));?>" class="btn text-default ">查看作品</a>
+                                </div>
+                            </div>
+                            <div class="img item-info-front pic-message text-white text-small" >
+                                <a href="#" >
+                                    <img   class="lazy" data-original="<?php echo $r['thumb'];?>" />
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </li>
             <?php } ?>
         </ul>
+    </div>
     <?php } ?>
 </div>
+
+
+
+
 
 <div class="hidden hide">
 
@@ -195,38 +208,18 @@
         $('.see-art').html(seeart);
 
         var ids = $(this).attr('date-id'),
-                url = "<?php echo url('goods/index/works');?>";
+            url = "<?php echo url('goods/index/works');?>";
         $.post(url,{id:ids},function(data){
             if(data){
+                //改图片的上下翻转效果
                 $('.ajax-pic-list').empty();
-                var hidesl = $('.hide').children('div');
-                for(var j=0; j < hidesl.length; j++){
-                    var jss = parseInt(j)+1;
-                    var ats = $('.hide div:nth-child('+ jss +')').attr('date-ids');
-                    for( var s =0; s< data.length; s++){
-                        if(ats == data[s]['id']){
-                            var htm = '<i class="yescoll"></i>';
-                        }else{
-                            var htm = '<i class="collection" onclick="colle('+ data[s]['id'] +')"></i>';
-                        }
-                    }
-
-                }
-
                 for(var i=0; i < data.length; i++){
                     var uid = $('.uid').val();
-                    if(!uid || uid == 0){
-                        var htm = '<i class="collection" onclick="colle('+ data[i]['id'] +')"></i>';
-                    }
-                    var html = '<li class="pic-list" date-id="'+ data[i]['id'] +'" onmousemove="shows('+ i +')" onmouseout="hides('+ i +')">'+
-                            '<img width="290" height="290" src=" ' + data[i]['thumb'] +' " alt="">'+
-                            '<div class="works-marsk"></div>' +
-                            '<div class="pic-message text-white text-small">' +
-                            htm +
-                            '<p class="pic-name"> ' + data[i]['name'] +' </p>' +
-                            '<i class="lines blo-lines"></i>' +
-                            '<p><a class="text-white" href="/index.php?m=goods&c=index&a=worksDetail&sid=' + data[i]['id'] + '" >查看作品</a></p>' +
-                            '</div></li>';
+                var html = '<li class="pic-list" date-id="' + data[i]['id'] + '"><div class="artist_box item"><div class="item-infos"><div class="ch-info-back-warp item-info-back">' +
+                        '<div class="ch-info-back msk-msg" onclick="jump_to_workdetail( ' + data[i]['id'] + ')" >' +
+                        '<h3> ' + data[i]['name'] + '</h3><p></p>' +
+                        '<a href="/index.php?m=goods&c=index&a=worksDetail&sid=' + data[i]['id'] + '" class="btn text-default ">查看作品</a></div></div><div class="img item-info-front pic-message text-white text-small" ><a href="#" >' +
+                        '<img   class="lazy" src="' + data[i]['thumb'] + '" /></a></div></div></div></li>';
                     $('.ajax-pic-list').append(html);
                 }
 
@@ -261,7 +254,7 @@
     /*作家详情页跳转*/
     $('.artisty').on('click',function(){
         var ids = $(this).attr('date-id'),
-                url = "/index.php?m=goods&c=index&a=artist&id="+ids;
+            url = "/index.php?m=goods&c=index&a=artist&id="+ids;
         window.location.href = url;
     });
 

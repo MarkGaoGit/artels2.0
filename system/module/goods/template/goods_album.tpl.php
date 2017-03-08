@@ -46,14 +46,14 @@
 					</div>
 				</div>
 				<?php if(!empty($info['extra']['specs'])){?>
-				<div class="margin-big-top padding-top padding-left padding-right border border-gray border-dashed spec-right-body bg-white">
-					<div class="wrap padding-none clearfix">
-					<?php foreach ($info['extra']['specs'] as $k => $spec) {?>
-						<a <?php if($k == $info['spec_id']){?>class="current"<?php }?> data-id="<?php echo $k?>" href="javascript:;"><?php echo $spec['name']?></a>
-						<input type="hidden" name="spec_id" value="<?php echo $info['spec_id']?>" />
-					<?php }?>
-					</div>
-				</div>
+<!--				<div class="margin-big-top padding-top padding-left padding-right border border-gray border-dashed spec-right-body bg-white">-->
+<!--					<div class="wrap padding-none clearfix">-->
+<!--					--><?php //foreach ($info['extra']['specs'] as $k => $spec) {?>
+<!--						<a --><?php //if($k == $info['spec_id']){?><!--class="current"--><?php //}?><!-- data-id="--><?php //echo $k?><!--" href="javascript:;">--><?php //echo $spec['name']?><!--</a>-->
+<!--						<input type="hidden" name="spec_id" value="--><?php //echo $info['spec_id']?><!--" />-->
+<!--					--><?php //}?>
+<!--					</div>-->
+<!--				</div>-->
 				<?php }?>
 				<?php foreach ($info['extra']['specs'] as $key => $value) {?>
 				<?php foreach ($value['value'] as $k => $spec) {?>

@@ -433,6 +433,4 @@ class order_control extends init_control {
         }
         $this->load->librarys('View')->assign('data',$data);
         $data = $this->load->librarys('View')->get('data');
-        echo json_encode($data);
-    }
-}
+        echo json_encode($data

@@ -1,3 +1,0 @@
-<?php
-//000000000000a:1:{s:4:"base";a:28:{s:7:"catname";s:14:" 艺筑酒店 ";s:5:"catid";s:1:"4";s:10:"cat_format";s:1:"4";s:4:"name";s:5:"21312";s:2:"id";s:0:"";s:8:"brand_id";s:1:"3";s:11:"warn_number";s:1:"5";s:6:"status";s:1:"1";s:4:"sort";s:3:"100";s:7:"keyword";s:0:"";s:11:"description";s:3:"213";s:8:"subtitle";s:0:"";s:5:"style";s:0:"";s:14:"ysp_descript01";s:0:"";s:7:"style01";s:0:"";s:14:"ysp_descript02";s:0:"";s:7:"style02";s:0:"";s:8:"is_index";s:1:"0";s:8:"is_hotel";s:1:"0";s:7:"is_open";s:1:"1";s:13:"is_derivative";s:1:"0";s:10:"hotel_name";s:0:"";s:8:"room_num";s:0:"";s:9:"room_code";s:0:"";s:14:"hotel_descript";s:0:"";s:19:"hotel_class_content";s:0:"";s:8:"formhash";s:6:"wWEo94";s:4:"page";i:1;}}
-?>

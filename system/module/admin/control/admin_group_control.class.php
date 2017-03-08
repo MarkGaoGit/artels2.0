@@ -18,7 +18,7 @@ class admin_group_control extends init_control {
 		$data = $this->service->getAll();
 		include $this->admin_tpl('admin_group_index');
 	}
-
+	
 	/* 删除 */
 	public function del() {
 		if(empty($_GET['formhash']) || $_GET['formhash'] != FORMHASH) showmessage('_token_error_');
