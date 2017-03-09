@@ -10,10 +10,10 @@
 class memcache_service extends service {
 
     public function __construct() {
-		$host = '127.0.0.1';
-        $port = '11211';
+//		$host = '127.0.0.1';
+//        $port = '11211';
         $this->m = new memcache();
-        $this->m->addserver( $host , $port );
+//        $this->m->addserver( $host , $port );
 	}
 
     /*

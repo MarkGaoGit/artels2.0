@@ -648,35 +648,12 @@ class index_control extends init_control
     public function works(){
         $post = $_POST;
         $get = $_GET;
-        //查询艺术品分类
-        $where['status'] = 1;
-        $where['show_in_nav'] = 1;
-        $where['parent_id'] = $get['cid'];
 
-        $workNavJson = $this->memcache->get( 'workNav' );
-        $nav = json_decode( $workNavJson ,true );
-        if( empty($nav) ){
-            $nav = $this->cate_db->where($where)->order('sort ASC')->select();
-            $workNav = json_encode( $nav );
-            $this->memcache->set( 'workNav', $workNav, false );
-        }
+        if( empty($get['id']) || empty($post['id']) ){     //非点击作家头像 查作品
 
-
-
-        if(empty($post['id'])){     //不是AJAX的操作
-
-            $artistJson = $this->memcache->get('artist');
-            $artist = json_decode( $artistJson, true );
-            if( empty($artist) ){
-                $artist = $this->brand_service->get_lists();
-                $artistJson = json_encode( $artist );
-                $this->memcache->set( 'artist', $artistJson, false );
-            }
-
-
-            /*搜索条件*/
-            if($post['art-name']){
-                $spuid = $this->brand_service->ajax_brand($post['art-name']);
+            /*搜索条件名字*/
+            if($get['artname']){
+                $spuid = $this->brand_service->ajax_brand($get['artname']);
                 $searcharr = array();
                 foreach($spuid as $k=>$v){
                     $searcharr[] = $k;
@@ -722,49 +699,34 @@ class index_control extends init_control
 
             }
 
-            if($price || $get['catid']){
-                $limit = '';
-            }else{
-                $limit = '0,50';
-            }
-            if( empty($where['max_price'] ) && empty($where['catid'] ) ){
-                $picJson = $this->memcache->get('pic');
-                $pic = json_decode( $picJson, true );
-                if( empty($pic) ){
-                    $pic = $this->spu_db->where($where)->order('sort ASC')->limit( $limit )->select();
-                    $picJson = json_encode($pic);
-                    $this->memcache->set( 'pic',$picJson, false );
-                }
-            }else{
+            $limit = $this->ajax_limit( $get['load'] , $get['page'] );
+
+            //memcache 带上搜索的条件 以免取数据 取错
+            $picJson = $this->memcache->get('pic' . $get['load'] . $limit . $price . $get['catid'] . $get['artname'] );
+            $pic = json_decode( $picJson, true );
+            if( empty($pic) ){
                 $pic = $this->spu_db->where($where)->order('sort ASC')->limit( $limit )->select();
+                $picJson = json_encode($pic);
+                $this->memcache->set( 'pic' . $get['load'] . $limit . $price . $get['catid'] . $get['artname'] ,$picJson, false );
             }
-            $_SESSION['yshuPic'] = $pic;
+            if( $pic && empty( $get['types'] ) ){
+                if( empty( $_SESSION['yshuPic']) ){
+                    $_SESSION['yshuPic'] = $pic;
+                }else{
+                    $_SESSION['yshuPic'] = array_merge_recursive( $_SESSION['yshuPic'], $pic );
+                }
+            }
 
 
-            /*查询收藏*/
-            $result  = $this->favorite_service->set_mid($this->member['id'])->get_favorite($_GET['page'],$_GET['limit'],$_GET['closing']);
-            $collarr = array();
-            foreach($result as $k=>$v){
-                $collarr[] = $result[$k]['sku_id'];
+            //如果是下拉加载就退出
+            if( $get['load'] == '1' ){
+                echo json_encode( $pic );
+                return;
             }
-            $skuWhere['sku_id'] = array('IN',$collarr);
-            $spu_id = $this->sku_db->where($skuWhere)->select();
-            $sparr = array();
-            foreach($spu_id as $k=>$v){
-                $sparr[] = $spu_id[$k]['spu_id'];
-            }
-            $spWhere['id'] = array('IN',$sparr);
-            $favoritedate = $this->spu_db->where($spWhere)->select();
 
-            /*收藏的作品ID*/
-            $farr = array();
-            foreach($favoritedate as $k=>$v){
-                $farr[] = $favoritedate[$k]['id'];
-            }
-            $_SESSION['yshuFarr'] = $farr;
         }else{
             /*查询作家的作品*/
-            $bid = $post['id'];
+            $bid = $get['id'];
             $where['brand_id'] = $bid;
             $where['is_hotel'] = 0;
             $where['status'] = 1;
@@ -785,11 +747,35 @@ class index_control extends init_control
             }
         }
 
+        //查询作家
+        $artistJson = $this->memcache->get('artist');
+        $artist = json_decode( $artistJson, true );
+        if( empty($artist) ){
+            $artist = $this->brand_service->get_lists();
+            $artistJson = json_encode( $artist );
+            $this->memcache->set( 'artist', $artistJson, false );
+        }
+
+
+        //查询艺术品分类
+        $where['status'] = 1;
+        $where['show_in_nav'] = 1;
+        $where['parent_id'] = $get['cid'] ? $get['cid'] : $post['cid'];
+
+        //nav
+        $workNavJson = $this->memcache->get( 'workNav' );
+        $nav = json_decode( $workNavJson ,true );
+        if( empty($nav) ){
+            $nav = $this->cate_db->where($where)->order('sort ASC')->select();
+            $workNav = json_encode( $nav );
+            $this->memcache->set( 'workNav', $workNav, false );
+        }
+
         $this->load->librarys('View')->assign('nav',$nav);
-        $this->load->librarys('View')->assign('shoucang',$farr);
         $this->load->librarys('View')->assign('artist',$artist);
         $this->load->librarys('View')->assign('pic',$pic);
         $this->load->librarys('View')->assign('get',$_GET);
+        $this->load->librarys('View')->assign('post',$_POST);
         $this->load->librarys('View')->assign('userInfo',$this->member);
         $this->load->librarys('View')->display('works');
     }
@@ -1220,8 +1206,6 @@ class index_control extends init_control
 
         if($_GET['types'] == 'yshu'){
             $derivative = $_SESSION['yshuPic'];
-            $shoucang = $_SESSION['yshuFarr'];
-            $arrs = array($derivative , $shoucang);
         }elseif($_GET['types'] == 'myshu'){
             $derivative = $_SESSION['mWorks'];
             $arrs = array($derivative);
@@ -1233,6 +1217,7 @@ class index_control extends init_control
 
         foreach( $derivative as $k => $v ) {
             $indexWhere['spu_id'] = $derivative[$k]['id'];
+//            $indexWhere['brand_id'] = $_GET['bid'];
             $result = $this->load->table('goods_index')->where($indexWhere)->find();
             $derivative[$k]['sales'] = $result['sales'];
             $derivative[$k]['hits'] = $result['hits'];
@@ -1254,7 +1239,6 @@ class index_control extends init_control
 
         if($_GET['types'] == 'yshu'){
             $this->load->librarys('View')->assign('nav',$_SESSION['yshuNav']);
-            $this->load->librarys('View')->assign('shoucang',$shoucang);
             $this->load->librarys('View')->assign('artist',$_SESSION['yshuArtist']);
             $this->load->librarys('View')->assign('pic',$derivative);
             $this->load->librarys('View')->assign('userInfo',$this->member);
@@ -1641,4 +1625,22 @@ class index_control extends init_control
         echo json_encode($result);
     }
 
+    /**
+     * [ajax_limit ] 下拉分页 和 默认数据
+     * @limit  exmaple: 0 , 8 ;
+     */
+    private function ajax_limit( $load , $page ){
+        if( $load == '1' ){
+            $prev = ( $page - 1 ) * 8 ;
+            $now =  $page * 8;
+            $limit = " {$prev} , {$now} ";
+        }else{
+            $limit = '0,8';
+        }
+        return $limit;
+    }
+
+    public function fulshm(){
+        return $this->memcache->flushCache();
+    }
 }

@@ -1619,7 +1619,7 @@ img { display: block; }
 
 
 .data-where-list { height:40px; line-height:40px; text-indent:10px; width:100%; background:#f1f2f3; border-top:2px solid #f85738; margin-top:20px;}
-
+.sortlink { cursor:pointer;}
 
 
 .derivatice .deri-list { width:1220px;}

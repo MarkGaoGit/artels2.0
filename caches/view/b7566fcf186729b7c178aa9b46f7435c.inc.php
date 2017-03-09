@@ -8,7 +8,6 @@
     $('title').html('艺术家与作品');
 </script>
 <link rel="stylesheet" href="<?php echo __ROOT__ ?>template/default/statics/css/work.css">
-<script src="<?php echo __ROOT__ ?>template/default/statics/js/work.pa.js"></script>
 <!--面包屑-->
 <div class="container crumbs clearfix topb"></div>
 
@@ -19,7 +18,8 @@
     </div>
     <div class="art-search fr">
         <form action="<?php echo url('goods/index/works');?>" method="post">
-            <input type="text" name="art-name" placeholder="请输入作家姓名" class="art-name fl text-default" value="<?php echo $_POST['art-name'] ?>">
+            <input type="text" name="artname" placeholder="请输入作家姓名" class="art-name fl text-default" value="<?php echo $_POST['artname'] ?>">
+            <input type="hidden" name="cid" value="<?php echo $_GET['cid'];?>">
             <button  class="fr cheng-btn text-big-small ">搜索</button>
         </form>
     </div>
@@ -79,9 +79,9 @@
     <div class="item-blue-top filter">
         <dl>
             <dt>排序方式：</dt>
-            <dd ><a class="<?php if($_GET['fileds'] == 'id') { ?> text-orange<?php } ?>" href="<?php echo url('goods/index/sorts',array('cid'=>$_GET['cid'],'fileds' => 'id','types'=>'yshu'));?>">综合</a></dd>
-            <dd ><a class="<?php if($_GET['fileds'] == 'max_price') { ?> text-orange<?php } ?>" href="<?php echo url('goods/index/sorts',array('cid'=>$_GET['cid'],'fileds' => 'max_price','types'=>'yshu'));?>">价格</a></dd>
-            <dd ><a class="<?php if($_GET['fileds'] == 'hits') { ?> text-orange<?php } ?>" href="<?php echo url('goods/index/sorts',array('cid'=>$_GET['cid'],'fileds' => 'hits','types'=>'yshu'));?>">人气</a></dd>
+            <dd ><a class=" sortlink <?php if($_GET['fileds'] == 'id') { ?> text-orange<?php } ?>"  href="<?php echo url('goods/index/sorts',array('cid'=>$_GET['cid'],'fileds' => 'id','types'=>'yshu'));?>">综合</a></dd>
+            <dd ><a class=" sortlink <?php if($_GET['fileds'] == 'max_price') { ?> text-orange<?php } ?>"  href="<?php echo url('goods/index/sorts',array('cid'=>$_GET['cid'],'fileds' => 'max_price','types'=>'yshu'));?>">价格</a></dd>
+            <dd ><a class=" sortlink <?php if($_GET['fileds'] == 'hits') { ?> text-orange<?php } ?>"   href="<?php echo url('goods/index/sorts',array('cid'=>$_GET['cid'],'fileds' => 'hits','types'=>'yshu'));?>">人气</a></dd>
             <dd class="text-center">您正在观看 <span class="see-art" style="color:#f60;">全部作家</span> 的作品</dd>
         </dl>
     </div>
@@ -122,6 +122,51 @@
     </div>
     <?php } ?>
 </div>
+
+<!--下拉加载 需要带的参数-->
+<input type="hidden" class="ajax-page" value="2">
+<input type="hidden" class="brand-id" value=''>
+<input type="hidden" class="sorttype" value="<?php echo $get['types'];?>">
+<input type="hidden" class="artname" value="<?php echo $post['artname'];?>">
+<input type="hidden" class="catid" value="<?php echo $post['catid'];?>">
+<input type="hidden" class="prices" value="<?php echo $post['prices'];?>">
+<script>
+    $(window).scroll( function() {
+        var scrollAdd = $(window).scrollTop();      //滚动条的位置
+        var windowHeight = $(document).height();    //页面高度
+        var seeHeight = $(window).height();         //能看到的高度
+
+        if( scrollAdd >= ( windowHeight - seeHeight ) ){    //判断是否到底部
+
+            //AJAX请求
+            var url = "<?php echo url('goods/index/works',array('load'=>'1'));?>",
+                page = $('.ajax-page').val(),
+                catid = $('.catid').val(),
+                bid = $('.brand-id').val(),
+                artname = $('.artname').val(),
+                types = $('.sorttype').val(),
+                prices = $('.prices').val();
+            var nextPage = parseInt( page ) + 1;
+            $('.ajax-page').val( nextPage );
+
+            $.get(url,{ page:page , catid:catid, id:bid, prices:prices, artname: artname, types:types },function( data ){
+                if( data ){
+                    for(var i=0; i < 8; i++){       //8是每页几条
+                        var html = '<li class="pic-list" date-id="' + data[i]['id'] + '"><div class="artist_box item"><div class="item-infos"><div class="ch-info-back-warp item-info-back">' +
+                            '<div class="ch-info-back msk-msg" onclick="jump_to_workdetail( ' + data[i]['id'] + ')" >' +
+                            '<h3> ' + data[i]['name'] + '</h3><p></p>' +
+                            '<a href="/index.php?m=goods&c=index&a=worksDetail&sid=' + data[i]['id'] + '" class="btn text-default ">查看作品</a></div></div><div class="img item-info-front pic-message text-white text-small" ><a href="#" >' +
+                            '<img   class="lazy" src="' + data[i]['thumb'] + '" /></a></div></div></div></li>';
+                        $('.ajax-pic-list').append(html);
+                    }
+                }
+            },'json');
+
+        }
+
+
+    } );
+</script>
 
 
 
@@ -169,6 +214,15 @@
     function jump_to_workdetail(sid){
         window.location.href = "?m=goods&c=index&a=worksDetail&sid=" + sid;
     }
+//
+//    //不全排序Bug
+//    $('.sortlink').on('click',function(){
+//        var bid = $('.brand-id').val();
+//        var url = $(this).data('href');
+//        url =  url + '&bid=' + bid;
+//        window.location.href = url;
+//    });
+
 
     /*左右移动作家*/
     var rcnm = function(e){
@@ -209,6 +263,7 @@
 
         var ids = $(this).attr('date-id'),
             url = "<?php echo url('goods/index/works');?>";
+        $('.brand-id').val(ids);
         $.post(url,{id:ids},function(data){
             if(data){
                 //改图片的上下翻转效果
