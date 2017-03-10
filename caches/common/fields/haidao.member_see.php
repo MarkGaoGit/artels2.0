@@ -1,3 +1,0 @@
-<?php
-//000000000000a:11:{i:0;s:2:"id";i:1;s:9:"user_name";i:2;s:4:"name";i:3;s:6:"mobile";i:4;s:7:"card_no";i:5;s:3:"uid";i:6;s:6:"spu_id";i:7;s:7:"numbers";s:8:"_autoinc";b:1;s:3:"_pk";s:2:"id";s:5:"_type";a:8:{s:2:"id";s:17:"int(255) unsigned";s:9:"user_name";s:11:"varchar(60)";s:4:"name";s:11:"varchar(60)";s:6:"mobile";s:8:"char(11)";s:7:"card_no";s:11:"varchar(25)";s:3:"uid";s:8:"int(255)";s:6:"spu_id";s:8:"int(255)";s:7:"numbers";s:17:"int(255) unsigned";}}
-?>

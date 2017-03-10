@@ -1,3 +1,0 @@
-<?php
-//000000000000a:11:{i:0;s:4:"code";i:1;s:4:"name";i:2;s:11:"description";i:3;s:7:"enabled";i:4;s:6:"config";i:5;s:8:"dateline";i:6;s:4:"sort";i:7;s:6:"ignore";s:8:"_autoinc";b:0;s:3:"_pk";s:4:"code";s:5:"_type";a:8:{s:4:"code";s:11:"varchar(50)";s:4:"name";s:12:"varchar(250)";s:11:"description";s:12:"varchar(250)";s:7:"enabled";s:12:"varchar(250)";s:6:"config";s:4:"text";s:8:"dateline";s:16:"int(10) unsigned";s:4:"sort";s:15:"int(8) unsigned";s:6:"ignore";s:4:"text";}}
-?>

@@ -11,6 +11,7 @@ class cache_control extends init_control
 	public function _initialize() {
 		parent::_initialize();
 		$this->service = $this->load->service('admin/cache');
+        $this->memcache = $this->load->service('goods/memcache');
 	}
 
     /**
@@ -40,6 +41,7 @@ class cache_control extends init_control
 		$keys = array_keys($caches);
 		$cache = $keys[$step];
         if($step >= count($caches)) {
+            $this->memcache->flushCache();
 	        showmessage(lang('admin/cache_upload_success'), "null", 1);
         }
         if(!isset($caches[$cache])) {
@@ -48,4 +50,7 @@ class cache_control extends init_control
         $this->service->$cache();
         showmessage($caches[$cache].'更新完成，请稍后...', url('clear', array('step' => $step + 1)), 1);
 	}
+
+
+
 }

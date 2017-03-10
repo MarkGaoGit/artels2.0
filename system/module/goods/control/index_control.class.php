@@ -1640,7 +1640,4 @@ class index_control extends init_control
         return $limit;
     }
 
-    public function fulshm(){
-        return $this->memcache->flushCache();
-    }
 }
