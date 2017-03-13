@@ -7,7 +7,7 @@
 <body>
     <!-- 顶部工具条 -->
     <div class="layout top-tools">
-        <div class="site-bar container">
+        <div class="site-bar  ">
             <!--<ul class="fl">-->
                 <!--<li><a class="fun-homepage" href="javascript:;">设为首页</a></li>-->
                 <!--<li class="spacer"></li>-->

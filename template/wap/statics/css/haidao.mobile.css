@@ -605,23 +605,23 @@ input[type=color], input[type=date], input[type=datetime-local], input[type=date
 .hotel-booking input[type='text'] { margin:0 !important; border:none !important; background:#fff;}
 .hotel-booking .baseline .mui-input-row { padding:6px 0 ;}
 .hotel-booking .baseline .icons { z-index:998; position:absolute; right:13%; color:#05457a; }
-.hotel-booking .mui-icon { top:11%;}
-.hotel-booking .mui-icons-times1 { top:32%;}
-.hotel-booking .mui-icons-times2 { top:280px;}
+.hotel-booking .mui-icon { top:9.5%;}
+.hotel-booking .mui-icons-times1 { top:29%;}
+.hotel-booking .mui-icons-times2 { top:274px;}
 .hotel-booking .yd-btn { height:53px; box-shadow: none !important;}
 @media screen and (max-height:480px) {
-	.hotel-booking .hd-h2 { font-size:20px !important;}
-	.hotel-booking select , .hotel-booking .mui-input-row , #check-out-time , #check-in-time { max-height:50px;}
-	.hotel-booking .mui-input-row label { width:45%;}
-	.hotel-booking .mui-icon { top:11%;}
-	.hotel-booking .mui-icons-times1 { top:194px !important;}
-	.hotel-booking .mui-icons-times2 { top:258px !important;}
+    .hotel-booking .hd-h2 { font-size:20px !important;}
+    .hotel-booking select , .hotel-booking .mui-input-row , #check-out-time , #check-in-time { max-height:50px;}
+    .hotel-booking .mui-input-row label { width:45%;}
+    .hotel-booking .mui-icon { top:11%;}
+    .hotel-booking .mui-icons-times1 { top:194px !important;}
+    .hotel-booking .mui-icons-times2 { top:258px !important;}
 }
 @media screen and (max-width:413px){
-	.hotel-booking .mui-input-row label { width:45%;}
-	.hotel-booking .mui-icon { top:11%;}
-	.hotel-booking .mui-icons-times1 { top:206px;}
-	.hotel-booking .mui-icons-times2 { top:272px;}
+    .hotel-booking .mui-input-row label { width:45%;}
+    .hotel-booking .mui-icon { top:9.5%;}
+    .hotel-booking .mui-icons-times1 { top:206px;}
+    .hotel-booking .mui-icons-times2 { top:272px;}
 
 }
 

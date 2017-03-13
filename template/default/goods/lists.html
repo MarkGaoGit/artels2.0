@@ -21,8 +21,8 @@
                             <form action='index.php?m=goods&c=index&a=lists' method='post' name='check'>
                                 <li>
                                     <span>入住城市</span> <br/>
-                                    <input type='text' name='list-city' value="<?php echo $post['nav-city'] ? $post['nav-city'] : $post['list-city']; ?>" id='city'  autocomplete="off" />
-                                    <input type='hidden' name='list-citys' value="<?php echo $post['nav-citys'] ? $post['nav-citys'] : $post['citys']; ?>" class="list-citys" autocomplete="off" />
+                                    <input type='text' name='list-city' value="<?php echo $post['nav-city'] ? $post['nav-city'] : ($post['list-city'] ? $post['list-city'] : $post['city'])  ; ?>" id='city'  autocomplete="off" />
+                                    <input type='hidden' name='list-citys' value="<?php echo $post['nav-citys'] ? $post['nav-citys'] : ($post['citys'] ? $post['citys'] : $post['list-citys']); ?>" class="list-citys" autocomplete="off" />
                                     <span class='icon-add icon'></span>
                                     <div class="hotel-add text-default">
                                         <ul style="width:200px;">
@@ -34,12 +34,12 @@
                                 </li>
                                 <li>
                                     <span>入住时间</span><br/>
-                                    <input type='text' name='check-time' value="<?php echo $post['check-time']?>"  onClick="$('.select-hotel-button').removeAttr('disabled'); WdatePicker()" autocomplete="off" id='reserve-check-time' >
+                                    <input type='text' name='check-time' value="<?php echo $post['check-time']?>"  onClick="$('.select-hotel-button').removeAttr('disabled'); WdatePicker({minDate:'%y-%M-{%d}'})" autocomplete="off" id='reserve-check-time' >
                                     <span class='icon-time icon ' ></span>
                                 </li>
                                 <li>
                                     <span>退房时间</span><br/>
-                                    <input type='text' name='checkout-time' value="<?php echo $post['checkout-time']?>" onClick="$('.select-hotel-button').removeAttr('disabled'); WdatePicker()" autocomplete="off" id='reserve-checkout-time' >
+                                    <input type='text' name='checkout-time' value="<?php echo $post['checkout-time']?>" onClick="$('.select-hotel-button').removeAttr('disabled'); WdatePicker({minDate:'%y-%M-{%d}'})" autocomplete="off" id='reserve-checkout-time' >
                                     <span class='icon-time icon' ></span>
                                 </li>
                                 <li>

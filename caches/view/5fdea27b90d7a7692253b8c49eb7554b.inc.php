@@ -33,11 +33,11 @@
 
 
                 <span class="find-condition">入住时间</span>
-                <input type="text" name="check-time" class="banner-checktime" autocomplete='off' onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker()" >
+                <input type="text" name="check-time" class="banner-checktime" autocomplete='off' onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker({minDate:'%y-%M-{%d}'})" >
                 <span class="icon-time icon" ></span>
 
                 <span class="find-condition">退房时间</span>
-                <input type="text" name="checkout-time" class="banner-checktimeout" onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker()" >
+                <input type="text" name="checkout-time" class="banner-checktimeout" onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker({minDate:'%y-%M-{%d}'})" >
                 <span class="icon-time icon" ></span>
                 <input type="submit" name="submit" value="马上搜索" onClick="selectChick(2)" class="button select-hotel-button">
             </form>
@@ -135,11 +135,11 @@
                         +" '> <img src='" + root +"template/default/statics/images/junhotel.png ' /> </a>"+
                         "</li>"+
                         "<li><a href='"+
-                        "/index.php?m=goods&c=index&a=pinpai#YTSDM"
+                        "/index.php?m=goods&c=index&a=pinpai#ZGSHM"
                         +" '> <img src='" + root +"template/default/statics/images/artelsjx.png ' /> </a>"+
                         "</li>"+
                         "<li><a href='"+
-                        "/index.php?m=goods&c=index&a=pinpai#HZFYM"
+                        "/index.php?m=goods&c=index&a=pinpai#ZJHZM"
                         +"'> <img src='" + root +"template/default/statics/images/artels.png ' /> </a>"+
                         "</li>"+
                         "<li><a href='"+
@@ -227,7 +227,7 @@
                         "<li>" +
                         "<h3>艺境会员</h3>" +
                         "<p>查看会员多重尊贵福利 入住即享 </p>"+
-                        "<p><a class='text-default strong text-main'  href='index.php?m=goods&c=index&a=vip'>更多信息 ></a></p>" +
+                        "<p><a class='text-default strong text-main'target='_blank'  href='index.php?m=goods&c=index&a=vip'>更多信息 ></a></p>" +
                         "</li>" +
                         "<li>" +
                         "<h3>艺术人文</h3>" +

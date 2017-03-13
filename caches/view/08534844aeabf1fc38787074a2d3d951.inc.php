@@ -1,3 +1,4 @@
+<?php if(!defined('IN_APP')) exit('Access Denied');?>
 <?php include template('toper','common');?>
 <?php include template('header','common');?>
 <?php include template('login','common');?>
@@ -12,8 +13,8 @@
 <div class="item-two-column container clearfix reserve-content">
     <div class="margin-bottom item-blue-top reserve-room">
         <div class="item-title padding-left fff">
-            <a href="{__APP__}"><i class="icon-home"></i></a>
-            <span class="web-add"><a href="{__APP__}">首页</a>&nbsp;&nbsp;＞&nbsp;&nbsp;酒店预订&nbsp;&nbsp;>&nbsp;&nbsp;预订</span>
+            <a href="<?php echo __APP__;?>"><i class="icon-home"></i></a>
+            <span class="web-add"><a href="<?php echo __APP__;?>">首页</a>&nbsp;&nbsp;＞&nbsp;&nbsp;酒店预订&nbsp;&nbsp;>&nbsp;&nbsp;预订</span>
         </div>
         <div class='reserve'>
         </div>
@@ -32,7 +33,7 @@
                 <tr>
                     <td width="90" >客房类型：</td>
                     <td colspan="4" class="room-type strong text-left">
-                        {$_GET['rm']}
+                        <?php echo $_GET['rm'];?>
                     </td>
                 </tr>
                 <tr>
@@ -108,13 +109,13 @@
                 <tr>
                     <td width="100" class="text-right"><small class="text-red">*</small>身份证号：</td>
                     <td colspan="2">
-                        <input type="text" name="id_no" class="id_no" value="{$_SESSION['userInfo']['idNo']}" >
+                        <input type="text" name="id_no" class="id_no" value="<?php echo $_SESSION['userInfo']['idNo'];?>" >
                     </td>
                 </tr>
                 <tr>
                     <td width="100" class="text-right"><small class="text-red">*</small>手机号码：</td>
                     <td>
-                        <input type="text" name="mobile" class="mobile" value="{$_SESSION['userInfo']['mobile']}">
+                        <input type="text" name="mobile" class="mobile" value="<?php echo $_SESSION['userInfo']['mobile'];?>">
                     </td>
                     <td class="text-small">
                         <!--订单提交后，我们会将预订信息发送至您的手机-->
@@ -123,13 +124,13 @@
                 <tr>
                     <td width="100" class="text-right"><small class="text-red">*</small>会员卡号：</td>
                     <td colspan="2">
-                        <input type="text" name="card_no" class="card_no" value="{$_SESSION['userInfo']['cardNo']}">
+                        <input type="text" name="card_no" class="card_no" value="<?php echo $_SESSION['userInfo']['cardNo'];?>">
                     </td>
                 </tr>
                 <tr width="100" height="100">
                     <td class="rev-add text-right" >备注：</td>
                     <td colspan="2">
-                        <textarea name="rev" rows="4" cols="65" class="rev text-small">{$_GET['hotelMsg']}---{$_GET['roomnumbers']}---{$_GET['rm']}</textarea>
+                        <textarea name="rev" rows="4" cols="65" class="rev text-small"><?php echo $_GET['hotelMsg'];?>---<?php echo $_GET['roomnumbers'];?>---<?php echo $_GET['rm'];?></textarea>
                     </td>
                 </tr>
 
@@ -224,9 +225,9 @@
                 </tr>
             </table>
 
-            <input type="hidden" value="{$_GET['rc']}" name="roomtype" class="roomtype">
-            <input type="hidden" value="{$hotelMsg['subtitle']}" name="cityCode" class="cityCode">
-            <input type="hidden" value="{$hotelIds}" name="hotelId" class="hotelId">
+            <input type="hidden" value="<?php echo $_GET['rc'];?>" name="roomtype" class="roomtype">
+            <input type="hidden" value="<?php echo $hotelMsg['subtitle'];?>" name="cityCode" class="cityCode">
+            <input type="hidden" value="<?php echo $hotelIds;?>" name="hotelId" class="hotelId">
 
             <div class="next-two ">
                 <div class="res-step-next order-back strong text-big text-white fl">返回上一步</div>
@@ -246,31 +247,31 @@
         <div class="reserve-msg text-default">
             <div class="res-ok text-default">
                 <p>订单号：<span class="text-big-small strong order-number"></span></p>
-                <p>如需了解更多信息，欢迎致电我们。电话：{$hotelMsg['hotel_mobile']}</p>
+                <p>如需了解更多信息，欢迎致电我们。电话：<?php echo $hotelMsg['hotel_mobile'];?></p>
                 <p>预订成功，请您提前安排出行。</p>
             </div>
-            <a href="{url('goods/index/index')}" class="res-step-next strong text-big text-white">返回首页</a>
+            <a href="<?php echo url('goods/index/index');?>" class="res-step-next strong text-big text-white">返回首页</a>
         </div>
     </div>
     <div class="left fr left-step-01-02">
         <div class="res-hotel-msg text-indent20 bg-00447c text-white">酒店信息</div>
         <div class="res-hotel-img">
-            <img src="{$hotelMsg['thumb']}"  alt="">
+            <img src="<?php echo $hotelMsg['thumb'];?>"  alt="">
         </div>
         <div class="hotel-add-name border-bottoms margin-big-left">
-            <h3 class="strong">{$hotelMsg['name']}</h3>
+            <h3 class="strong"><?php echo $hotelMsg['name'];?></h3>
 
-            <p class="hotel-address">{$hotelMsg['description']}</p>
+            <p class="hotel-address"><?php echo $hotelMsg['description'];?></p>
         </div>
         <div class="res-hotel-disp border-bottoms margin-big-left margin-big-top">
             <h4 class="strong margin-small-bottom">
-                {$_GET['rm']}
+                <?php echo $_GET['rm'];?>
             </h4>
-            <p>房间描述:<br/>{$hotelMsg['keyword']}</p>
+            <p>房间描述:<br/><?php echo $hotelMsg['keyword'];?></p>
         </div>
         <div class="res-hotel-disp margin-big-left margin-big-top">
             <h4 class="strong margin-small-bottom">酒店介绍</h4>
-            <p>{$hotelMsg['hotel_descript']}</p>
+            <p><?php echo $hotelMsg['hotel_descript'];?></p>
         </div>
     </div>
     <div class="left fr left-step-03">
@@ -287,7 +288,7 @@
 </div>
 <?php include template('artels-footer','common');?>
 
-<script type="text/javascript" src="<?php echo __ROOT__ ?>statics/js/jquery.lazyload.js?v={HD_VERSION}" ></script>
+<script type="text/javascript" src="<?php echo __ROOT__ ?>statics/js/jquery.lazyload.js?v=<?php echo HD_VERSION;?>" ></script>
 
 <script>
     /*去除首页LOGO透明度*/
