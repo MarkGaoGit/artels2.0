@@ -60,8 +60,9 @@
         </li>
     </ul>
     <div class="wechat">
-        <div class="icon-wechat"></div>
-        <div class="rccode"></div>
+        <div class="rccode fl"></div>
+        <div class="icon-wechat fl"></div>
+        <div class="powerlong-logo fr"></div>
     </div>
 </div>
 <div class="artels-record">
@@ -71,6 +72,15 @@
 </body>
 <script>
     var root = "<?php echo __ROOT__ ?>";
+
+    $('.icon-wechat').on('mouseover',function(){
+        $('.rccode').fadeToggle();
+    });
+    $('.icon-wechat').on('mouseout',function(){
+        $('.rccode').fadeToggle();
+    });
+
+
     $('.artelsjx a').on('mouseover', function(){
         $('.artelsjx a img').attr({src : root + 'template/default/statics/images/artelsjx-small.png'});
     });

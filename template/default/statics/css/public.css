@@ -101,8 +101,8 @@ img { display: block; }
 
 /***header***/
 .header { position: relative;top:0px;}
-.logo { height: 70px; width:100%; position:relative; left:px; z-index:15; background-color:#fff;opacity:0.8;}
-.header .logo img { position:relative;left:50px;top:10px; cursor:pointer;}
+.logo { height: 70px; width:100%; position:relative; left:px; z-index:15; background-color:#fff;}
+.header .logo img { position:relative;top:10px; cursor:pointer;}
 
 .search-wrap { position: absolute; top: 28px; right: 345px; width: 511px; }
 .keyword { line-height: 12px; }
@@ -970,7 +970,7 @@ img { display: block; }
 .member-slider .slider-items p.text-tip { text-indent: 142px; line-height: 130px; }
 
 /***********************首页***********************/
-.banner { width: 100%; height: 375px; overflow: hidden; position: relative; top:-70px; }
+.banner { width: 100%; height: 450px; overflow: hidden; position: relative; }
 
 /************************快速搜索*************************/
 .banner .fast-find { background-color:#fff; opacity:0.9; width:228px;height:228px; border:1px solid #ccc;  box-shadow: 0 0 2px #bdb8b4; position: absolute;top:100px;;left:844px;z-index:16;}
@@ -982,14 +982,14 @@ img { display: block; }
 .fast-find .icon-add { background: url(../images/icon-add.png) no-repeat;}
 
 
-.shade-slider { position: relative; margin: auto; width: 1200px; height: 400px; overflow: hidden;}
+.shade-slider { position: relative; margin: auto; width: 1200px; height: 450px; overflow: hidden;}
 /*.shade-slider .prev, .shade-slider .next { display: block; position: absolute; top: 50%; margin-top: -70px; width: 28px; height: 48px; background: url(../images/service-03.jpg) no-repeat; z-index: 5;opacity:0.8; }*/
 /*.shade-slider  .prev { right: 166px; background-position: -1313px -158px; }*/
 /*.shade-slider  .next { right: 130px; background-position: -1346px -158px; }*/
 .shade-slider .box { float: left; position: relative; left: -1200px; text-align: center; }
 .shade-slider .box .item { float: left; }
-.shade-slider .thumb { position: absolute; left: 0; bottom: 40px; width: 100%; text-align: center; z-index: 4; }
-.shade-slider .thumb li { display: inline-block; margin: 0 5px; width: 16px; height: 16px; border-radius: 8px; background-color: #c3c3c3; cursor: pointer; }
+.shade-slider .thumb { position: absolute; left: 0; bottom:10px; width: 100%; text-align: center; z-index: 4; }
+.shade-slider .thumb li { display: inline-block; margin: 0 5px; width: 12px; height: 12px; border-radius: 6px; background-color: #c3c3c3; cursor: pointer; }
 .shade-slider .thumb li.current { background-color: #00447c; }
 
 .index-pic-1 { width: 150px; }
@@ -1004,7 +1004,7 @@ img { display: block; }
 .index-pic-2 .title { margin-bottom: 10px; height: 36px; line-height: 18px; overflow: hidden; }
 .index-pic-2 .price { margin-bottom: 7px; color: #f85738; line-height: 19px; }
 
-.index-activity {   width: 100%;  height:220px;}
+.index-activity {   width: 100%;  height:260px;}
 .index-activity .tab li { margin-bottom: -1px;  width: 200px; height: 70px; line-height: 76px; font-size:16px; background-color:#00447c; color:#fff; }
 /*.index-activity .tab li b { display: none; }*/
 .index-activity .tab li.current { position: relative; border-bottom: 65px solid #e6e6e6; }
@@ -1012,27 +1012,27 @@ img { display: block; }
 
 .index-activity .tab .hover-color {color:#1b2a4c;}
 
-.index-activity .tab-tag {  width:100%; height:150px;}
+.index-activity .tab-tag {  width:100%; height:130px;}
 /*.index-activity .tab-tag ul { margin-left: -1px; width: 100%; }*/
 /*.index-activity ul.tag li { float: left; padding: 30px 22px 15px 22px; width: 195px; height:150px; border-left: 1px dotted #eee; }*/
 
 /********************************导航内容************************************/
 
 .top-70 { position:relative; top:-70px;}
-.index-activity .tab-tag .content{background-color: #e6e6e6;height:150px;width:100%; margin-top:-1px;}
-.tab-tag .brand ul li{ float:left; margin:50px -2px;}
+.index-activity .tab-tag .content{background-color: #e6e6e6;height:130px;width:100%; margin-top:-1px;}
+.tab-tag .brand ul li{ float:left; margin:40px -2px;}
 .tab-tag .brand ul { margin-left:20px;}
 
 .pinpai , .check { width:1200px; margin-top:35px;}
 .pinpai li { float:left; margin-left:54px;}
 
-.nav { width:100%; height:70px; background:#00447c;}
-.nav .nav-li { width:240px; line-height: 70px; text-align: center;float:left; cursor:pointer; margin-top: -1px; font-size:16px; color:#fff; }
+.nav { width:100%; height:60px; background:#00447c;}
+.nav .nav-li { width:240px; line-height: 60px; text-align: center;float:left; cursor:pointer; margin-top: -1px; font-size:16px; color:#fff; }
 
 /*酒店预订*/
 .reserve ul { width:1200px;}
 .reserve ul li { float:left; position:relative; left:40px;}
-.m-t40-r34 ul li { margin:40px 50px; }
+.m-t40-r34 ul li { margin:24px 50px; }
 .reserve ul li span { font-size:14px;}
 .reserve input {width:198px; height:42px; border:1px solid #c3c3c3; background-color:#fff; text-indent: 14px;margin-top: 6px; font-size:14px;font-weight: bold;}
 .reserve .icon {display: block;height:28px;width:28px; position: relative;left:166px;top:-34px;}
@@ -1082,7 +1082,7 @@ img { display: block; }
 .vip .discount-5 a { color:#5a5a5a; font-size:14px;}
 .vip .discount-5 span{ height:10px; width:5px; display:block;background:url(../images/icon-discount.png) no-repeat;position:relative;left:90px;top:-14px;  }
 
-.vip .vip-right { width:880px; height:68px; position:relative;left:260px; top:-30px; border-left:2px solid #00447c;text-indent:40px;}
+.vip .vip-right { width:880px; height:68px; position:relative;left:260px; top:-34px; border-left:2px solid #00447c;text-indent:40px;}
 .vip .vip-right ul li { float:left; margin:0 15px 0 0;}
 .vip .about ul li { float:left; margin:0 10px 0 0;}
 .aboutss .about ul li { margin:0 10px 0 0;}
@@ -1099,10 +1099,11 @@ img { display: block; }
 .artels-footer .footer-nav { width:700px;}
 .artels-footer .footer-nav li { float:left; margin-right:10px; position: relative; top: 30px; color:#b4b5b5;}
 .artels-footer .footer-nav .border { border-left:1px solid #b4b5b5; height:14px;}
-.artels-footer .wechat { height:110px; width:180px; float:right; margin-top:-78px;}
-.artels-footer .wechat .icon-wechat { height:50px; width: 50px; background:url(../images/icon-wechat-ccc.jpg) no-repeat; position:relative;top:15px;}
+.artels-footer .wechat { height:110px; width:330px; float:right; margin-top:-64px;}
+.artels-footer .wechat .icon-wechat { height:50px; width: 50px; background:url(../images/icon-wechat-ccc.jpg) no-repeat; margin-left:120px; position:absolute;top:36px;}
 .artels-footer .wechat .icon-wechat:hover { background:url(../images/icon-wechat.jpg) no-repeat;}
-.artels-footer .wechat .rccode { height: 108px; width:108px; background:url(../images/icon-rccode.jpg) no-repeat; position:relative;left:60px; top:-35px;}
+.artels-footer .wechat .rccode { height: 108px; width:108px; background:url(../images/icon-rccode.jpg) no-repeat; margin-right:10px; display:none; }
+.artels-footer .wechat .powerlong-logo { height:52px; width:150px; background:url(../images/powerlong-logo.png) no-repeat; margin-top:22px; }
 
 .artels-record { margin:0 auto; width:1200px; position:relative; top:-70px;}
 .artels-record p { width:1200px; text-align: right;}

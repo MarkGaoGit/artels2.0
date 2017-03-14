@@ -15,31 +15,31 @@
             {/hd}
         </ul>
         <!-- 快速搜索酒店预订 -->
-        <div class="fast-find">
-            <form action="index.php?m=goods&c=index&a=lists" method="post" class='select-from' name="fast-find">
-                <span class="find-condition">入住城市</span>
-                <input type='text' name='city' class="city-input click-city"   autocomplete="off" />
-                <input type='hidden' name='citys' class="citys" autocomplete="off" />
-                <span class="icon-add icon"></span>
-                <div class="hotel-add text-default">
-                    <ul style="width:200px;">
-                        {loop $city $r}
-                        <li city-code="{$r['cityCode']}">{$r['name']}</li>
-                        {/loop}
-                    </ul>
-                </div>
+        <!--<div class="fast-find">-->
+            <!--<form action="index.php?m=goods&c=index&a=lists" method="post" class='select-from' name="fast-find">-->
+                <!--<span class="find-condition">入住城市</span>-->
+                <!--<input type='text' name='city' class="city-input click-city"   autocomplete="off" />-->
+                <!--<input type='hidden' name='citys' class="citys" autocomplete="off" />-->
+                <!--<span class="icon-add icon"></span>-->
+                <!--<div class="hotel-add text-default">-->
+                    <!--<ul style="width:200px;">-->
+                        <!--{loop $city $r}-->
+                        <!--<li city-code="{$r['cityCode']}">{$r['name']}</li>-->
+                        <!--{/loop}-->
+                    <!--</ul>-->
+                <!--</div>-->
 
 
-                <span class="find-condition">入住时间</span>
-                <input type="text" name="check-time" class="banner-checktime" autocomplete='off' onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker({minDate:'%y-%M-{%d}'})" >
-                <span class="icon-time icon" ></span>
+                <!--<span class="find-condition">入住时间</span>-->
+                <!--<input type="text" name="check-time" class="banner-checktime" autocomplete='off' onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker({minDate:'%y-%M-{%d}'})" >-->
+                <!--<span class="icon-time icon" ></span>-->
 
-                <span class="find-condition">退房时间</span>
-                <input type="text" name="checkout-time" class="banner-checktimeout" onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker({minDate:'%y-%M-{%d}'})" >
-                <span class="icon-time icon" ></span>
-                <input type="submit" name="submit" value="马上搜索" onClick="selectChick(2)" class="button select-hotel-button">
-            </form>
-        </div>
+                <!--<span class="find-condition">退房时间</span>-->
+                <!--<input type="text" name="checkout-time" class="banner-checktimeout" onClick=" $('.select-hotel-button').removeAttr('disabled');WdatePicker({minDate:'%y-%M-{%d}'})" >-->
+                <!--<span class="icon-time icon" ></span>-->
+                <!--<input type="submit" name="submit" value="马上搜索" onClick="selectChick(2)" class="button select-hotel-button">-->
+            <!--</form>-->
+        <!--</div>-->
     </div>
 </div>
 <!--Banner end-->
@@ -90,8 +90,8 @@
             if(ids == nowid){
                 $('.nav .nav-li:nth-child('+ i +')').css({
                     'width':'240px',
-                    'height':'62px',
-                    'line-height': '56px',
+                    'height':'52px',
+                    'line-height': '46px',
                     'position':'relative',
                     'top':'8px',
                     'background':'#e6e6e6',
@@ -101,8 +101,8 @@
             }else{
                 $('.nav .nav-li:nth-child('+ i +')').css({
                     'width':'240px',
-                    'height':'62px',
-                    'line-height': '56px',
+                    'height':'52px',
+                    'line-height': '46px',
                     'position':'relative',
                     'top':'8px',
                     'background':'#00437c',

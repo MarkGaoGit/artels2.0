@@ -17,7 +17,7 @@ class brand_service extends service {
 	 * @return [type] [description]
 	 */
 	public function get_lists($page,$limit){
-		$result = $this->db->page($page)->limit($limit)->order('sort asc')->getField('id,name,us_name,status,profile,write_view,exhibition,descript,sort,logo,logomobile,isrecommend',TRUE);
+		$result = $this->db->where('isrecommend = 1')->page($page)->limit($limit)->order('sort asc')->getField('id,name,us_name,status,profile,write_view,exhibition,descript,sort,logo,logomobile,isrecommend',TRUE);
 		if(!$result){
 			$this->error = $this->db->getError();
 		}
