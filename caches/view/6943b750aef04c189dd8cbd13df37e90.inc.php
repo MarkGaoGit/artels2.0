@@ -1,3 +1,4 @@
+<?php if(!defined('IN_APP')) exit('Access Denied');?>
 <div class="container  border-gray-white clearfix ">
     <div class="fl index-activity">
         <ul class="nav layout border-bottom border-gray-white clearfix goods_lists">

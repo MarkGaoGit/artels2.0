@@ -97,11 +97,11 @@ img { display: block; }
 .site-bar .toper-login{ width: 50px; height:33px;}
 .site-bar .toper-login .login-button { position:relative;left: 20px;top:-14px;}
 
-.top-tools{position:absolute; top:36px; z-index: 15; font-size:14px;}
+.top-tools{position:absolute; top:36px; font-size:14px;}
 
 /***header***/
 .header { position: relative;top:0px;}
-.logo { height: 70px; width:100%; position:relative; left:px; z-index:15; background-color:#fff;}
+.logo { height: 70px; width:100%; position:relative;   }
 .header .logo img { position:relative;top:10px; cursor:pointer;}
 
 .search-wrap { position: absolute; top: 28px; right: 345px; width: 511px; }
@@ -1518,7 +1518,7 @@ img { display: block; }
 
 
 .art-nav { width:130px; position: fixed; top:160px; right:50px;  z-index:25; }
-.art-nav img { margin-bottom:62px; cursor: pointer;}
+.art-nav img { margin-bottom:30px; cursor: pointer;}
 .art-nav ul li { height:48px; line-height: 48px; text-align: center; border-bottom:1px solid #e3e3e3; color:#fff; background:#fff; }
 .art-nav ul li:hover { background:#01b4bc; }
 .art-nav ul li:hover a { color:#fff; }

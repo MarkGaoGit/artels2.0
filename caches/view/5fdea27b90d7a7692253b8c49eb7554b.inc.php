@@ -1,18 +1,21 @@
+<?php if(!defined('IN_APP')) exit('Access Denied');?>
 <?php include template('toper','common');?>
 <?php include template('header','common');?>
-<script type="text/javascript" src="template/default/statics/js/index.js?v={HD_VERSION}"></script>
-<script type="text/javascript" src="template/default/statics/js/jquery.cookie.js?v={HD_VERSION}"></script>
+<script type="text/javascript" src="template/default/statics/js/index.js?v=<?php echo HD_VERSION;?>"></script>
+<script type="text/javascript" src="template/default/statics/js/jquery.cookie.js?v=<?php echo HD_VERSION;?>"></script>
 <!--Banner-->
 <?php include template('login','common');?>
 <?php include template('logintoper','common');?>
 <div class="banner">
     <div class="shade-slider">
         <ul class="box">
-            {hd:misc method="lists" tagfile="focus" order="sort ASC"}
-            {loop $data $r}
-            <li class="item"><a href="{$r[url]}" {if $r[target] == 1} target="_blank" {/if} ><img src="{$r[thumb]}" width="1200" /></a></li>
-            {/loop}
-            {/hd}
+            <?php
+	$taglib_misc_focus = new taglib('misc','focus');
+	$data = $taglib_misc_focus->lists(array('order'=>'sort ASC'), array('limit'=>'20','cache'=>'084399cac6745350d12ad62046eb9112,3600'));
+?>
+            <?php if(is_array($data)) foreach($data as $r) { ?>            <li class="item"><a href="<?php echo $r['url'];?>" <?php if($r[target] == 1) { ?> target="_blank" <?php } ?> ><img src="<?php echo $r['thumb'];?>" width="1200" /></a></li>
+            <?php } ?>
+            
         </ul>
         <!-- 快速搜索酒店预订 -->
         <!--<div class="fast-find">-->
@@ -23,9 +26,8 @@
                 <!--<span class="icon-add icon"></span>-->
                 <!--<div class="hotel-add text-default">-->
                     <!--<ul style="width:200px;">-->
-                        <!--{loop $city $r}-->
-                        <!--<li city-code="{$r['cityCode']}">{$r['name']}</li>-->
-                        <!--{/loop}-->
+                        <?php if(is_array($city)) foreach($city as $r) { ?>                        <!--<li city-code="<?php echo $r['cityCode'];?>"><?php echo $r['name'];?></li>-->
+                        <?php } ?>
                     <!--</ul>-->
                 <!--</div>-->
 
@@ -53,10 +55,10 @@
 </div>
 
 <?php include template('artels-footer','common');?>
-{hook global_footer}
+<?php echo runhook('global_footer', '');?>
 </body>
 </html>
-<script type="text/javascript" src="<?php echo __ROOT__ ?>statics/js/jquery.lazyload.js?v={HD_VERSION}" ></script>
+<script type="text/javascript" src="<?php echo __ROOT__ ?>statics/js/jquery.lazyload.js?v=<?php echo HD_VERSION;?>" ></script>
 
 <script type="text/javascript">
     var url = "<?php echo url('goods/index/ajax_goods')?>";
@@ -136,9 +138,9 @@
                     "<span class='icon-add icon'></span>"+
                     "<div class='hotel-add text-default'>" +
                     "<ul style='width:200px;'>" +
-                    "{loop $city $k $r}"+
-                    "<li city-code='" + "{$r['cityCode']}" +"' onclick='addHml({$k})' >{$r['name']}</li>" +
-                    "{/loop}"+
+                    "<?php if(is_array($city)) foreach($city as $k => $r) { ?>"+
+                    "<li city-code='" + "<?php echo $r['cityCode'];?>" +"' onclick='addHml(<?php echo $k;?>)' ><?php echo $r['name'];?></li>" +
+                    "<?php } ?>"+
                     "</ul>" +
                     "</div>" +
                     "</li>"+
@@ -291,7 +293,7 @@
             var html = '';
             $.each(ret.lists,function(i,item){
                 html += '<li class="index-pic-1">'
-                        +		'<div class="img"><a href="'+ item.url +'"><img class="lazy" src="{SKIN_PATH}statics/images/lazy.gif" data-original="'+ item.thumb +'" width="150" height="150" /></a></div>'
+                        +		'<div class="img"><a href="'+ item.url +'"><img class="lazy" src="<?php echo SKIN_PATH;?>statics/images/lazy.gif" data-original="'+ item.thumb +'" width="150" height="150" /></a></div>'
                         +			'<div class="text">'
                         +				'<div class="title text-ellipsis"><a href="'+ item.url +'">'+ item.sku_name +'</a></div>'
                         +				'<div class="price">￥'+ item.prom_price +'</div>'
@@ -314,7 +316,7 @@
             if(ret.lists.length > 0){
                 $.each(ret.lists,function(i,item){
                     html += '<li class="index-pic-2">'
-                            +		'<div class="img"><a href="'+ item.url +'"><img class="lazy" src="{SKIN_PATH}statics/images/lazy.gif" data-original="'+ item.thumb +'" width="218" height="218" /></a></div>'
+                            +		'<div class="img"><a href="'+ item.url +'"><img class="lazy" src="<?php echo SKIN_PATH;?>statics/images/lazy.gif" data-original="'+ item.thumb +'" width="218" height="218" /></a></div>'
                             +		'<div class="text">'
                             +			'<div class="title"><a href="'+ item.url +'">'+ item.sku_name +'</a></div>'
                             +			'<div class="price">￥'+ item.prom_price +'</div>'
@@ -341,7 +343,7 @@
                     var top_num = i < 9 ? '0' + (i*1+1) : i+1;
                     html += li_html
                             +		'<div class="no-num"><span class="text-mix">NO.' + top_num + '</span></div>'
-                            +		'<div class="img"><a href="'+ item.url +'"><img class="lazy" src="{SKIN_PATH}statics/images/lazy.gif" data-original="'+ item.thumb +'" width="97" height="97" /></a></div>'
+                            +		'<div class="img"><a href="'+ item.url +'"><img class="lazy" src="<?php echo SKIN_PATH;?>statics/images/lazy.gif" data-original="'+ item.thumb +'" width="97" height="97" /></a></div>'
                             +		'<div class="text">'
                             +			'<div class="title"><a href="'+ item.url +'">'+ item.sku_name +'</a></div>'
                             +			'<div class="price"><span>￥'+ item.prom_price +'</span></div>'
