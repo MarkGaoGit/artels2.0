@@ -1,9 +1,10 @@
-{template header common}
-{template artels-menu-header common}
+<?php if(!defined('IN_APP')) exit('Access Denied');?>
+<?php include template('header', 'common'); ?>
+<?php include template('artels-menu-header', 'common'); ?>
 <section class="container">
     <div class="baseline">
         <div class="text-center margin-big">
-            <img src="{SKIN_PATH}statics/images/about.jpg" alt="">
+            <img src="<?php echo SKIN_PATH;?>statics/images/about.jpg" alt="">
             <p class="hd-h3">关于我们</p>
         </div>
 
@@ -36,6 +37,6 @@
         </div>
     </div>
 </section>
-{template artels-menu-footer common}
+<?php include template('artels-menu-footer', 'common'); ?>
 </body>
 </html>
